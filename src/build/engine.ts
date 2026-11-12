@@ -9,11 +9,14 @@ const root = document.documentElement;
 
 type Listener = () => void;
 
+export type AutoScroll = 'idle' | 'running' | 'paused' | 'finished';
+
 const state = {
   total: 0,
   done: 0,
   agents: 0,
   skipped: false,
+  auto: 'idle' as AutoScroll,
 };
 
 const listeners = new Set<Listener>();
@@ -75,6 +78,76 @@ export function skipAll() {
 }
 
 const sleep = (ms: number) => new Promise<void>((r) => window.setTimeout(r, ms));
+
+// ------------------------------------------------------------------ auto-scroll
+// After the hero has assembled, the page glides down by itself so the rest of
+// the site builds in front of the visitor. Any touch, wheel, key press or click
+// hands control straight back; the pill has a button to pause and resume.
+
+let autoRaf = 0;
+let autoPos = 0;
+let autoSpeed = 0;
+let autoLast = 0;
+
+const INTERRUPTS = ['wheel', 'touchstart', 'keydown', 'pointerdown'] as const;
+
+function onInterrupt(event: Event) {
+  // The pill's own buttons (pause, skip) must not count as taking over.
+  if (event.target instanceof Element && event.target.closest('.pill')) return;
+  pauseAuto();
+}
+
+function setAuto(next: AutoScroll) {
+  if (state.auto === next) return;
+  state.auto = next;
+  cancelAnimationFrame(autoRaf);
+  INTERRUPTS.forEach((type) => window.removeEventListener(type, onInterrupt));
+  if (next === 'running') {
+    INTERRUPTS.forEach((type) => window.addEventListener(type, onInterrupt, { passive: true }));
+    autoPos = window.scrollY;
+    autoSpeed = 0;
+    autoLast = performance.now();
+    autoRaf = requestAnimationFrame(autoFrame);
+  }
+  emit();
+}
+
+function autoFrame(now: number) {
+  if (state.auto !== 'running') return;
+  const dt = Math.min(0.05, (now - autoLast) / 1000);
+  autoLast = now;
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  // If something else moved the page, carry on from where it is now.
+  if (Math.abs(window.scrollY - autoPos) > 4) autoPos = window.scrollY;
+  // Cruise at about a sixth of the screen per second, easing in at the start
+  // and out again over the last stretch before the bottom.
+  const cruise = Math.max(90, window.innerHeight * 0.16);
+  const landing = Math.min(1, (max - autoPos) / 260 + 0.12);
+  autoSpeed += (cruise * landing - autoSpeed) * Math.min(1, dt * 2);
+  autoPos = Math.min(max, autoPos + autoSpeed * dt);
+  window.scrollTo({ top: autoPos, behavior: 'instant' });
+  if (autoPos >= max - 0.5) {
+    setAuto('finished');
+    return;
+  }
+  autoRaf = requestAnimationFrame(autoFrame);
+}
+
+export function pauseAuto() {
+  if (state.auto === 'running') setAuto('paused');
+}
+
+export function toggleAuto() {
+  if (state.auto === 'running') setAuto('paused');
+  else if (state.auto !== 'finished' || window.scrollY < 40) setAuto('running');
+}
+
+/** Begin the tour, but only on a fresh visit that starts at the top. */
+function beginAuto() {
+  if (state.auto !== 'idle' || !root.classList.contains('build-on')) return;
+  if (window.scrollY > 60 || window.location.hash.length > 1) return;
+  setAuto('running');
+}
 
 /** Resolves once fonts are ready, so boxes are measured at their final size. */
 export const fontsReady: Promise<void> = Promise.race([
@@ -249,6 +322,27 @@ export async function runGroup(group: HTMLElement, opts: GroupOptions = {}) {
       await sleep(50);
     }
   };
+
+  if (opts.intro) {
+    // Start the tour once everything on the first screen has been assembled.
+    // (On a phone the hero is taller than the screen, so its lower parts are
+    // still waiting to scroll into view at that point.)
+    const poll = window.setInterval(() => {
+      if (state.auto !== 'idle' || !isEnabled()) {
+        window.clearInterval(poll);
+        return;
+      }
+      const waiting = targets.some(
+        (el) =>
+          !el.classList.contains('b-in') &&
+          el.getBoundingClientRect().top < window.innerHeight * 0.9,
+      );
+      if (!waiting) {
+        window.clearInterval(poll);
+        window.setTimeout(beginAuto, 700);
+      }
+    }, 250);
+  }
 
   await Promise.all(agents.map(work));
   io.disconnect();

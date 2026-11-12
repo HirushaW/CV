@@ -21,12 +21,6 @@ export const hero = {
   kicker: 'Computational chemistry · Drug design · Nanocarriers',
   tagline:
     'I use computer simulation to help design drug molecules and the nanoscale carriers that deliver them.',
-  stats: [
-    { value: 9, decimals: 0, label: 'dendrimer families' },
-    { value: 10000, decimals: 0, label: 'repeat units per polymer' },
-    { value: 0.585, decimals: 3, prefix: 'ν = ', label: 'self-avoiding walk exponent reproduced' },
-    { value: 3.73, decimals: 2, label: 'chemistry GPA / 4.00' },
-  ],
   now: [
     {
       tag: 'Research',
@@ -372,6 +366,7 @@ export const experience = [
   {
     role: 'Winter Intern',
     org: 'Shandong Drug and Food Vocational College',
+    photos: 'shandong',
     place: 'Weihai, Shandong Province, China',
     when: 'Dec 2025 – Jan 2026',
     points: [
@@ -386,6 +381,7 @@ export const experience = [
   {
     role: 'Internship Trainee',
     org: 'Kelun Lifesciences (Pvt) Ltd',
+    photos: 'kelun',
     place: 'Digana, Central Province, Sri Lanka',
     when: 'Nov 2025 – Dec 2025',
     points: [
@@ -465,19 +461,41 @@ export const membership = {
   when: 'Apr 2025 – Present',
 };
 
-// Names and positions only; contact details are given on request.
 export const referees = [
   {
     name: 'Dr. Udayana Ranatunga',
     title: 'Senior Lecturer',
     place: 'Department of Chemistry, University of Peradeniya, Sri Lanka',
+    email: 'udayana.ranatunga@sci.pdn.ac.lk',
   },
   {
     name: 'Dr. Sampath B. Alahakoon',
     title: 'Senior Lecturer',
     place: 'Department of Chemistry, University of Peradeniya, Sri Lanka',
+    email: 'sampath.alahakoon@sci.pdn.ac.lk',
   },
 ];
+
+// The quotation that opens the contact section.
+export const quote = {
+  text: 'Everything that living things do can be understood in terms of the jigglings and wigglings of atoms.',
+  author: 'Richard P. Feynman',
+  source: 'The Feynman Lectures on Physics',
+};
+
+// Photographs for each part of the site. Put the image files in public/photos/
+// and list them here; a part with an empty list shows no gallery.
+//   { src: './photos/kelun-lab.jpg', alt: 'What the photo shows', caption: 'Short caption' }
+export type Photo = { src: string; alt: string; caption?: string };
+
+export const photos: Record<string, Photo[]> = {
+  udb: [],
+  polybuilder: [],
+  colorimeter: [],
+  shandong: [],
+  kelun: [],
+  leadership: [],
+};
 
 // `symbol` is the two-letter label on each section's periodic-table style tile.
 export const sections = [

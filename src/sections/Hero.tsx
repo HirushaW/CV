@@ -1,4 +1,4 @@
-import { BuildGroup, CountUp, Typed } from '../build/Build';
+import { BuildGroup, Typed } from '../build/Build';
 import Dendrimer from '../components/Dendrimer';
 import { hero, person } from '../content';
 
@@ -47,16 +47,6 @@ export default function Hero() {
                 Get in touch
               </a>
             </div>
-            <ul className="stats">
-              {hero.stats.map((s) => (
-                <li key={s.label} data-b>
-                  <b>
-                    <CountUp value={s.value} decimals={s.decimals} prefix={s.prefix} />
-                  </b>
-                  <span>{s.label}</span>
-                </li>
-              ))}
-            </ul>
           </div>
 
           <figure className={`portrait${person.portrait ? ' has-photo' : ''}`} data-b>

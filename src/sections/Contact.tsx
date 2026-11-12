@@ -1,5 +1,5 @@
 import { BuildGroup, useBuild } from '../build/Build';
-import { person } from '../content';
+import { person, quote } from '../content';
 
 export default function Contact() {
   const { total } = useBuild();
@@ -28,11 +28,13 @@ export default function Contact() {
           <p className="micro" data-b>
             Get in touch
           </p>
-          <h2 data-b>
-            Let&rsquo;s build something
-            <br />
-            at the nanoscale.
-          </h2>
+          <h2 className="sr-only">Contact</h2>
+          <figure className="quote" data-b>
+            <blockquote>&ldquo;{quote.text}&rdquo;</blockquote>
+            <figcaption>
+              {quote.author} <span aria-hidden="true">·</span> <cite>{quote.source}</cite>
+            </figcaption>
+          </figure>
           <p className="sec-sub" data-b>
             For research collaboration, questions about the Universal Dendrimer Builder, or
             anything in computational chemistry, email is the best way to reach me.

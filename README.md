@@ -40,6 +40,20 @@ python3 scripts/mol2json.py dendrimer_pamam_gen2_min_gaff.mol2 public/structures
 The script keeps the heavy atoms and their bonds and reports the heavy-atom radius of
 gyration. For PAMAM G2 it gives 13.922 Å, the same value the UDB Characteriser reports.
 
+### Photographs
+
+Each part of the site can show a strip of photos: UDB, PolyBuilder, the colorimeter, each
+internship, and leadership. Put the image files in `public/photos/` and list them under
+`photos` in `src/content.ts`:
+
+```ts
+kelun: [
+  { src: './photos/kelun-lab.jpg', alt: 'What the photo shows', caption: 'Short caption' },
+],
+```
+
+A part with an empty list shows no gallery.
+
 ### Project screenshots
 
 The images in `public/projects/` come from the README files of the SimQ and UDB
@@ -66,4 +80,6 @@ Vite settings (build command `npm run build`, output `dist`).
 
 - The build animation is skipped for visitors who prefer reduced motion, and there is a
   Skip button for everyone else.
-- The phone number and the referees' contact details are deliberately left off the site.
+- After the hero has assembled, the page scrolls down by itself. Any touch, scroll, key
+  press or click stops it, and the pill at the bottom has a button to pause and resume.
+- The phone number is deliberately left off the site.

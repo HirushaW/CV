@@ -7,7 +7,7 @@ import {
   type HTMLAttributes,
   type ReactNode,
 } from 'react';
-import { buildStore, fontsReady, isEnabled, runGroup, skipAll } from './engine';
+import { buildStore, fontsReady, isEnabled, runGroup, skipAll, toggleAuto } from './engine';
 
 export function useBuild() {
   return useSyncExternalStore(buildStore.subscribe, buildStore.get);
@@ -126,22 +126,48 @@ export function CountUp({ value, decimals = 0, prefix = '', suffix = '' }: Count
 
 /** The floating progress pill at the bottom of the screen. */
 export function StatusPill() {
-  const { total, done, agents, enabled, skipped } = useBuild();
+  const { total, done, agents, enabled, skipped, auto } = useBuild();
   const [gone, setGone] = useState(false);
   const complete = total > 0 && done >= total;
+  // Stay on screen while the page is still gliding down by itself.
+  const finished = (complete || skipped) && auto !== 'running';
 
   useEffect(() => {
-    if (!complete && !skipped) return;
+    if (!finished) {
+      setGone(false);
+      return;
+    }
     const id = window.setTimeout(() => setGone(true), skipped ? 0 : 2600);
     return () => window.clearTimeout(id);
-  }, [complete, skipped]);
+  }, [finished, skipped]);
 
-  if ((!enabled && !complete) || gone || total === 0) return null;
+  if ((!enabled && !complete && auto !== 'running') || gone || total === 0) return null;
 
   const pct = Math.round((done / total) * 100);
+  const scrolling = auto === 'running';
+  const canTour = auto !== 'finished' && !(complete && auto === 'idle');
 
   return (
     <div className={`pill${complete ? ' pill-done' : ''}`} role="status" aria-live="off">
+      {canTour && (
+        <button
+          type="button"
+          className={`pill-auto${scrolling ? ' on' : ''}`}
+          onClick={toggleAuto}
+          aria-pressed={scrolling}
+          aria-label={scrolling ? 'Pause automatic scrolling' : 'Start automatic scrolling'}
+          title={scrolling ? 'Pause automatic scrolling' : 'Scroll the page automatically'}
+        >
+          <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true">
+            {scrolling ? (
+              <path d="M2 1.5h3v9H2zM7 1.5h3v9H7z" fill="currentColor" />
+            ) : (
+              <path d="M2.5 1.2 10.5 6l-8 4.8z" fill="currentColor" />
+            )}
+          </svg>
+          <span>Auto</span>
+        </button>
+      )}
       <span className="pill-dots" aria-hidden="true">
         <i />
         <i />
@@ -149,8 +175,10 @@ export function StatusPill() {
         <i />
       </span>
       <span className="pill-text">
-        {complete ? 'Assembly complete' : agents > 0 ? 'Assembling' : 'Scroll to continue'}
-        <span className="pill-sep">·</span>
+        <span className="pill-word">
+          {complete ? 'Assembly complete' : agents > 0 ? 'Assembling' : 'Scroll to continue'}
+          <span className="pill-sep">·</span>
+        </span>
         <b>{done}</b> / {total}
         <span className="pill-sep">·</span>
         yield <b>{pct}%</b>
@@ -158,7 +186,7 @@ export function StatusPill() {
       <span className="pill-bar" aria-hidden="true">
         <i style={{ width: `${pct}%` }} />
       </span>
-      {!complete && (
+      {!complete && !skipped && (
         <button type="button" className="pill-skip" onClick={skipAll}>
           Skip
           <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true">

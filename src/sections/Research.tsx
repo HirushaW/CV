@@ -5,8 +5,9 @@ import Molecule, {
   elementColor,
   type StructureInfo,
 } from '../components/Molecule';
+import Photos from '../components/Photos';
 import SectionHead from '../components/SectionHead';
-import { colorimeter, polybuilder, software, softwareIntro, udb } from '../content';
+import { colorimeter, photos, polybuilder, software, softwareIntro, udb } from '../content';
 
 export default function Research() {
   const [stage, setStage] = useState(0);
@@ -182,6 +183,8 @@ export default function Research() {
             ))}
           </div>
 
+          <Photos items={photos.udb} />
+
           <div className="flag-foot">
             <div data-b>
               <p className="micro">Chemical families</p>
@@ -239,6 +242,7 @@ export default function Research() {
               ))}
             </ul>
           </div>
+          <Photos items={photos.polybuilder} />
         </article>
 
         {/* ------------------------------------------------------ Scientific software */}
@@ -329,6 +333,7 @@ export default function Research() {
               <li key={t}>{t}</li>
             ))}
           </ul>
+          <Photos items={photos.colorimeter} />
         </article>
       </div>
     </BuildGroup>

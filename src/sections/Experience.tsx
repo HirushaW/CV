@@ -1,6 +1,7 @@
 import { BuildGroup } from '../build/Build';
 import SectionHead from '../components/SectionHead';
-import { experience, leadership, membership, referees } from '../content';
+import Photos from '../components/Photos';
+import { experience, leadership, membership, photos, referees } from '../content';
 
 export function Experience() {
   return (
@@ -39,6 +40,7 @@ export function Experience() {
                     <li key={t}>{t}</li>
                   ))}
                 </ul>
+                <Photos items={photos[e.photos]} />
               </div>
             </article>
           ))}
@@ -75,6 +77,8 @@ export function Leadership() {
           ))}
         </ol>
 
+        <Photos items={photos.leadership} />
+
         <div className="card member" data-b>
           <p className="tag">Professional membership</p>
           <p className="member-title">{membership.title}</p>
@@ -91,12 +95,12 @@ export function Leadership() {
                 <p className="referee-name">{r.name}</p>
                 <p className="referee-title">{r.title}</p>
                 <p className="referee-place">{r.place}</p>
+                <a className="referee-mail" href={`mailto:${r.email}`}>
+                  {r.email}
+                </a>
               </div>
             ))}
           </div>
-          <p className="supervisor" data-b>
-            Contact details are available on request.
-          </p>
         </div>
       </div>
     </BuildGroup>
