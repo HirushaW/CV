@@ -41,7 +41,7 @@ if (problems.length === 0) {
       const where = `photos.${key}[${i + 1}]`;
       file(item.src, where);
       file(item.thumb, where);
-      for (const field of ['alt', 'title', 'details']) text(item[field], `${where}.${field}`);
+      for (const field of ['alt', 'details']) text(item[field], `${where}.${field}`);
     });
   }
   for (const [key, path] of Object.entries(db.backgrounds)) file(path, `backgrounds.${key}`);
@@ -60,7 +60,7 @@ if (problems.length === 0) {
     if (!db.photos[e.photos]) fail(`experience "${e.org}": no photo set named "${e.photos}"`);
     if (!db.backgrounds[e.photos]) fail(`experience "${e.org}": no background named "${e.photos}"`);
   });
-  for (const key of ['about', 'udb', 'polybuilder', 'colorimeter', 'leadership']) {
+  for (const key of ['udb', 'polybuilder', 'colorimeter', 'leadership']) {
     if (!db.photos[key]) fail(`photos.${key} is missing (use an empty "items" list for no photos)`);
   }
   for (const key of ['udb', 'polybuilder', 'colorimeter']) if (!db.backgrounds[key]) fail(`backgrounds.${key} is missing`);

@@ -5,10 +5,9 @@ import Molecule, {
   elementColor,
   type StructureInfo,
 } from '../components/Molecule';
-import Photos from '../components/Photos';
+import Gallery from '../components/Gallery';
 import SectionHead from '../components/SectionHead';
 import CardBackground from '../components/CardBackground';
-import { openLightbox } from '../components/Lightbox';
 import {
   colorimeter,
   photos,
@@ -193,12 +192,7 @@ export default function Research() {
             ))}
           </div>
 
-          <div className="flag-photos">
-            <p className="micro" data-b>
-              Gallery <span className="micro-hint">· select an image for details</span>
-            </p>
-            <Photos set={photos.udb} />
-          </div>
+          <Gallery set={photos.udb} />
 
           <div className="flag-foot">
             <div data-b>
@@ -258,7 +252,7 @@ export default function Research() {
               ))}
             </ul>
           </div>
-          <Photos set={photos.polybuilder} />
+          <Gallery set={photos.polybuilder} />
         </article>
 
         {/* ------------------------------------------------------ Scientific software */}
@@ -275,58 +269,40 @@ export default function Research() {
         </header>
 
         <div className="soft-list">
-          {software.map((s, i) => {
-            const set = photos[s.gallery];
-            const lead = set.items[0];
-            return (
-              <article key={s.title} className={`card soft has-bg${i % 2 ? ' flip' : ''}`}>
-                <CardBackground name={s.gallery} />
-                <div className="soft-text">
-                  <div className="proj-top" data-b>
-                    <p className="tag">Scientific software</p>
-                    <p className="proj-when">{s.when}</p>
-                  </div>
-                  <h3 data-b>{s.title}</h3>
-                  <p className="soft-summary" data-b>
-                    {s.summary}
-                  </p>
-                  <ul className="points small">
-                    {s.details.map((d) => (
-                      <li key={d} data-b>
-                        {d}
-                      </li>
-                    ))}
-                  </ul>
-                  <p className="supervisor" data-b>
-                    {s.meta}
-                  </p>
-                  <div className="proj-foot" data-b>
-                    <ul className="chips">
-                      {s.tags.map((t) => (
-                        <li key={t}>{t}</li>
-                      ))}
-                    </ul>
-                    <a className="proj-link" href={s.link.href} target="_blank" rel="noreferrer">
-                      {s.link.label} <span aria-hidden="true">↗</span>
-                    </a>
-                  </div>
-                </div>
-                <div className="soft-media">
-                  <figure className="shot" data-b>
-                    <button
-                      type="button"
-                      onClick={() => openLightbox(set, 0)}
-                      aria-label={`${lead.title}: open with details`}
-                    >
-                      <img src={lead.src} alt={lead.alt} loading="lazy" />
-                    </button>
-                    <figcaption>{lead.details}</figcaption>
-                  </figure>
-                  <Photos set={set} from={1} className="mini" />
-                </div>
-              </article>
-            );
-          })}
+          {software.map((s) => (
+            <article key={s.title} className="card soft has-bg">
+              <CardBackground name={s.gallery} />
+              <div className="proj-top" data-b>
+                <p className="tag">Scientific software</p>
+                <p className="proj-when">{s.when}</p>
+              </div>
+              <h3 data-b>{s.title}</h3>
+              <p className="soft-summary" data-b>
+                {s.summary}
+              </p>
+              <ul className="points small two">
+                {s.details.map((d) => (
+                  <li key={d} data-b>
+                    {d}
+                  </li>
+                ))}
+              </ul>
+              <p className="supervisor" data-b>
+                {s.meta}
+              </p>
+              <div className="proj-foot" data-b>
+                <ul className="chips">
+                  {s.tags.map((t) => (
+                    <li key={t}>{t}</li>
+                  ))}
+                </ul>
+                <a className="proj-link" href={s.link.href} target="_blank" rel="noreferrer">
+                  {s.link.label} <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+              <Gallery set={photos[s.gallery]} />
+            </article>
+          ))}
         </div>
 
         {/* ---------------------------------------------------------- Instrumentation */}
@@ -357,7 +333,7 @@ export default function Research() {
               <li key={t}>{t}</li>
             ))}
           </ul>
-          <Photos set={photos.colorimeter} className="wide" />
+          <Gallery set={photos.colorimeter} />
         </article>
       </div>
     </BuildGroup>

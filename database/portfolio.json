@@ -630,18 +630,6 @@
     "source": "The Feynman Lectures on Physics"
   },
   "photos": {
-    "about": {
-      "context": "Department of Chemistry · University of Peradeniya",
-      "items": [
-        {
-          "src": "./photos/about-periodic-table.jpg",
-          "thumb": "./photos/about-periodic-table-t.jpg",
-          "alt": "Hirusha Walgampaya standing in front of a large wall display of the periodic table",
-          "title": "At the Department of Chemistry",
-          "details": "In front of the periodic table display of the Department of Chemistry, Faculty of Science, University of Peradeniya."
-        }
-      ]
-    },
     "udb": {
       "context": "Universal Dendrimer Builder",
       "items": [
@@ -649,35 +637,24 @@
           "src": "./photos/udb-gui.png",
           "thumb": "./photos/udb-gui-t.jpg",
           "alt": "The Universal Dendrimer Builder window showing a completed six-generation build and a table of generations",
-          "title": "The UDB interface",
           "details": "UDB after building a PAMAM dendrimer to generation six: 9,156 atoms, with the monomer count, terminal groups, atoms, molar mass and radius of gyration listed for each generation."
         },
         {
           "src": "./photos/udb-seven-stage.png",
           "thumb": "./photos/udb-seven-stage-t.jpg",
           "alt": "Diagram of the seven stages of the cone placement engine, from cone axis vector to SO(3) simulated annealing",
-          "title": "Seven-stage cone placement engine",
           "details": "The seven stages run for every monomer at every generation: cone axis vector, azimuthal partition, half-angle widening, direction vectors, Mol2 placement, vdW clash filter and SO(3) simulated annealing."
         },
         {
           "src": "./photos/udb-workflow.png",
           "thumb": "./photos/udb-workflow-t.jpg",
           "alt": "Diagram of the six-step UDB workflow from fragment MOL2 files to analysis and output",
-          "title": "Complete workflow",
           "details": "From fragment files to a production molecular dynamics simulation in one graphical interface: fragment MOL2 files, 3D structure builder, GAFF2 parametrization, energy minimisation, MD simulation with NAMD, then analysis and output."
-        },
-        {
-          "src": "./photos/udb-rescon.jpg",
-          "thumb": "./photos/udb-rescon-t.jpg",
-          "alt": "Hirusha Walgampaya standing in front of the RESCON 2026 Annual Research Congress backdrop",
-          "title": "RESCON 2026",
-          "details": "At RESCON 2026, the Annual Research Congress of the Postgraduate Institute of Science, University of Peradeniya."
         },
         {
           "src": "./photos/udb-abstract.jpg",
           "thumb": "./photos/udb-abstract-t.jpg",
           "alt": "First page of the extended abstract on the Universal Dendrimer Builder",
-          "title": "Extended abstract",
           "details": "First page of the extended abstract “Universal Dendrimer Builder: A GUI-Driven Computational Platform for Multi-Type Dendrimer Construction, Parameterization, and Molecular Dynamics”, prepared for the Proceedings of the Postgraduate Institute of Science Research Congress, Sri Lanka, 24–25 September 2026."
         }
       ]
@@ -689,14 +666,12 @@
           "src": "./photos/udb-characteriser.png",
           "thumb": "./photos/udb-characteriser-t.jpg",
           "alt": "Screenshot of the UDB Characteriser showing a 3D view and summary values for a PAMAM G2 dendrimer",
-          "title": "UDB Characteriser",
           "details": "The Characteriser with results for a PAMAM G2 dendrimer: 516 atoms, 16 terminal groups, and its molar mass, radius of gyration, hydrodynamic radius and solvent-accessible surface area."
         },
         {
           "src": "./photos/characteriser-results.png",
           "thumb": "./photos/characteriser-results-t.jpg",
           "alt": "Three-panel figure: the minimised PAMAM G2 structure, a histogram of terminal distances and a bar chart of radius of gyration and hydrodynamic radius",
-          "title": "Worked example: PAMAM G2",
           "details": "Results for a PAMAM G2 dendrimer (516 atoms): the minimised structure with its 16 terminal amines highlighted, where the terminals sit relative to the core, and the radius of gyration (13.9 Å) beside the Kirkwood–Riseman (11.2 Å) and hard-sphere (18.0 Å) hydrodynamic radii."
         }
       ]
@@ -708,28 +683,24 @@
           "src": "./photos/simq-queue.png",
           "thumb": "./photos/simq-queue-t.jpg",
           "alt": "Screenshot of the SimQ queue page listing six jobs with their status, progress and expected finish times",
-          "title": "Queue",
           "details": "The main page: each row is a job, with its check result, status, progress and expected finish time. Captured in demo mode."
         },
         {
           "src": "./photos/simq-dashboard.png",
           "thumb": "./photos/simq-dashboard-t.jpg",
           "alt": "Screenshot of the SimQ dashboard with processor, memory and running-job panels",
-          "title": "Dashboard",
           "details": "A live view of the machine: every CPU thread, memory, and the jobs running now. Captured in demo mode."
         },
         {
           "src": "./photos/simq-add-job.png",
           "thumb": "./photos/simq-add-job-t.jpg",
           "alt": "Screenshot of the SimQ dialog for adding a job from a simulation folder",
-          "title": "Adding a job",
           "details": "Choose a folder and SimQ works out what it is (a UDB package, a NAMD configuration, an AMBER input or a shell script), then fills in the command, CPUs and GPU. Captured in demo mode."
         },
         {
           "src": "./photos/simq-software.png",
           "thumb": "./photos/simq-software-t.jpg",
           "alt": "Screenshot of the SimQ software page listing detected simulation programs",
-          "title": "Software detection",
           "details": "SimQ searches the machine for simulation programs such as NAMD, AMBER, GROMACS and LAMMPS, and shows each one’s version. Captured in demo mode."
         }
       ]
@@ -741,14 +712,12 @@
           "src": "./photos/mol2-converter.png",
           "thumb": "./photos/mol2-converter-t.jpg",
           "alt": "Screenshot of the Extract mol2 tab converting a PAMAM G2 dendrimer from GAFF2 to Sybyl atom types",
-          "title": "Extract mol2",
           "details": "The Extract mol2 tab converting a finished PAMAM G2 dendrimer (516 atoms) from GAFF2 to Sybyl atom types."
         },
         {
           "src": "./photos/converter-parameterization.png",
           "thumb": "./photos/converter-parameterization-t.jpg",
           "alt": "Screenshot of the Parameterization tab with a PAMAM monomer loaded",
-          "title": "Parameterization",
           "details": "The Parameterization tab with a PAMAM monomer loaded, ready for GAFF2 parameterization."
         }
       ]
@@ -764,7 +733,6 @@
           "src": "./photos/colorimeter-circuit.jpg",
           "thumb": "./photos/colorimeter-circuit-t.jpg",
           "alt": "Circuit diagram with two Arduino Uno boards, a row of LEDs on a breadboard, a servo motor, a keypad, an LCD and a light sensor",
-          "title": "Circuit design",
           "details": "Circuit design for the colorimeter: an LED source array on a breadboard, a servo motor, a keypad, an LCD and a light sensor, wired to two Arduino Uno boards."
         }
       ]
@@ -776,56 +744,48 @@
           "src": "./photos/shandong-1.jpg",
           "thumb": "./photos/shandong-1-t.jpg",
           "alt": "A group of trainees in lab coats listening to an instructor beside a laboratory bench",
-          "title": "Laboratory briefing",
           "details": "An instructor explains a procedure to the group at the bench."
         },
         {
           "src": "./photos/shandong-2.jpg",
           "thumb": "./photos/shandong-2-t.jpg",
           "alt": "A trainee in a lab coat working at a laboratory bench with a flask",
-          "title": "Bench work",
           "details": "Carrying out a laboratory practical."
         },
         {
           "src": "./photos/shandong-3.jpg",
           "thumb": "./photos/shandong-3-t.jpg",
           "alt": "An instructor demonstrating an instrument to a group of trainees in lab coats",
-          "title": "Instrument demonstration",
           "details": "An instructor demonstrates an instrument to the group."
         },
         {
           "src": "./photos/shandong-4.jpg",
           "thumb": "./photos/shandong-4-t.jpg",
           "alt": "Trainees in lab coats gathered around testing equipment in a laboratory",
-          "title": "Testing laboratory",
           "details": "Working with testing equipment in the college laboratory."
         },
         {
           "src": "./photos/shandong-5.jpg",
           "thumb": "./photos/shandong-5-t.jpg",
           "alt": "Nine people in lab coats standing together in a teaching laboratory",
-          "title": "Laboratory group",
           "details": "Group photo in a teaching laboratory during the internship."
         },
         {
           "src": "./photos/shandong-6.jpg",
           "thumb": "./photos/shandong-6-t.jpg",
           "alt": "Trainees seated at desks with name cards during a classroom session",
-          "title": "Lecture session",
           "details": "A classroom session during the programme, 4 January 2026."
         },
         {
           "src": "./photos/shandong-7.jpg",
           "thumb": "./photos/shandong-7-t.jpg",
           "alt": "A large group standing at the entrance of a building under a welcome banner",
-          "title": "Visit to Kelun, Chengdu",
           "details": "Group photo during the visit to the Kelun plant in Chengdu."
         },
         {
           "src": "./photos/shandong-8.jpg",
           "thumb": "./photos/shandong-8-t.jpg",
           "alt": "Six people holding two flags in front of a welcome screen",
-          "title": "Exchange programme",
           "details": "With the flags of the China Exchange Program for Young International (CEP) and Shandong Drug and Food Vocational College."
         }
       ]
@@ -837,28 +797,24 @@
           "src": "./photos/kelun-1.jpg",
           "thumb": "./photos/kelun-1-t.jpg",
           "alt": "Trainees in lab coats, hair covers and masks standing beside analytical instruments",
-          "title": "Quality control laboratory",
           "details": "A briefing beside the analytical instruments in the quality control laboratory."
         },
         {
           "src": "./photos/kelun-2.jpg",
           "thumb": "./photos/kelun-2-t.jpg",
           "alt": "Trainees in protective clothing watching an analyst work at a bench",
-          "title": "Observing a procedure",
           "details": "Watching an analyst carry out a laboratory procedure."
         },
         {
           "src": "./photos/kelun-3.jpg",
           "thumb": "./photos/kelun-3-t.jpg",
           "alt": "A group in lab coats, hair covers and masks in discussion in a laboratory",
-          "title": "Instrument briefing",
           "details": "Discussion with laboratory staff beside the analytical instruments."
         },
         {
           "src": "./photos/kelun-4.jpg",
           "thumb": "./photos/kelun-4-t.jpg",
           "alt": "Trainees in protective clothing standing in a row while an analyst prepares a sample",
-          "title": "In the laboratory",
           "details": "Observing sample handling in the laboratory."
         }
       ]
@@ -870,14 +826,12 @@
           "src": "./photos/chemsoc-1.jpg",
           "thumb": "./photos/chemsoc-1-t.jpg",
           "alt": "A large group seated and standing in two rows in a lecture hall",
-          "title": "CHEMSOC group photograph",
           "details": "Group photograph at a Ceylon University Chemical Society (CHEMSOC) event."
         },
         {
           "src": "./photos/chemsoc-2.jpg",
           "thumb": "./photos/chemsoc-2-t.jpg",
           "alt": "Two people holding an envelope between them in a lecture room",
-          "title": "CHEMSOC event",
           "details": "At a Ceylon University Chemical Society (CHEMSOC) event."
         }
       ]

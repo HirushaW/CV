@@ -49,7 +49,6 @@ the site means changing that file; no page code needs to be touched.
     "src": "./photos/name.jpg",
     "thumb": "./photos/name-t.jpg",
     "alt": "What the photo shows, for people who cannot see it",
-    "title": "Short title",
     "details": "The sentence or two shown when the photo is opened."
   }
   ```
@@ -97,7 +96,8 @@ Characterization Tools repositories and from the UDB website.
 | `src/build/engine.ts` | The self-building animation (cursors, wireframes, reveal) |
 | `src/components/Background.tsx` | Animated backdrop of molecules and chemistry equations |
 | `src/components/Molecule.tsx` | 3D viewer for the UDB structures |
-| `src/components/Lightbox.tsx` | Opens a photo or figure with its details |
+| `src/components/Gallery.tsx` | The "View images" button that expands a set of images in place |
+| `src/components/Lightbox.tsx` | Opens one image full size with its description |
 | `scripts/mol2json.py` | Converts a MOL2 structure for the viewer |
 | `src/styles.css` | All styling; colours are variables at the top |
 
@@ -112,4 +112,6 @@ Vite settings (build command `npm run build`, output `dist`).
   Skip button for everyone else.
 - After the hero has assembled, the page scrolls down by itself. Any touch, scroll, key
   press or click stops it, and the pill at the bottom has a button to pause and resume.
+- Only the portrait is shown in the normal view. Every other image sits behind a
+  "View images" button on its card and is shown whole, uncropped, when expanded.
 - The phone number is deliberately left off the site.

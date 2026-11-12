@@ -69,7 +69,7 @@ export default function Lightbox() {
       className="lightbox"
       role="dialog"
       aria-modal="true"
-      aria-label={item.title}
+      aria-label={set.context}
       onClick={(event) => {
         if (event.target === event.currentTarget) close();
       }}
@@ -94,7 +94,6 @@ export default function Lightbox() {
         </div>
         <aside className="lightbox-info">
           <p className="micro">{set.context}</p>
-          <h3>{item.title}</h3>
           <p className="lightbox-details">{item.details}</p>
           <div className="lightbox-foot">
             {many && (

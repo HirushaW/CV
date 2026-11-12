@@ -4,7 +4,7 @@
 
 import database from '../database/portfolio.json';
 
-export type Photo = { src: string; thumb: string; alt: string; title: string; details: string };
+export type Photo = { src: string; thumb: string; alt: string; details: string };
 export type PhotoSet = { context: string; items: Photo[] };
 
 export type Software = {
