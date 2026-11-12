@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 
-// A quiet animated backdrop: skeletal molecules (chemistry) and drifting
-// snippets of simulation commands and equations (computing). Everything is
-// drawn faintly on one canvas that sits behind the page.
+// A quiet animated backdrop: skeletal molecules and drifting chemistry
+// equations and molecular-simulation terms. Everything is drawn faintly on one
+// canvas that sits behind the page.
 
 type Atom = { x: number; y: number; label?: string; dot?: boolean };
 type Bond = [number, number, number];
@@ -119,28 +119,28 @@ const TEMPLATES: Template[] = [
 ];
 
 const TOKENS = [
-  '$ tleap -f build.in',
-  'antechamber -c bcc -at gaff2',
-  'namd3 +p8 min.conf',
-  'import numpy as np',
-  'KDTree(xyz).query_pairs(r)',
+  'ΔG = ΔH − TΔS',
+  'k = A·exp(−Ea / RT)',
+  'A = ε·l·c',
+  'pH = pKa + log([A⁻]/[HA])',
+  'PV = nRT',
+  'ΔG° = −RT ln K',
   'F = −∇V(r)',
-  'V = Σ kᵣ(r − r₀)²',
+  'V(r) = 4ε[(σ/r)¹² − (σ/r)⁶]',
   '⟨R²⟩ ~ N^2ν',
   'Rg² = (1/N) Σ (rᵢ − r̄)²',
-  'SO(3)',
-  'GAFF2',
-  'ΔG',
-  'kT',
-  'dt = 2 fs',
-  'T = 300 K',
-  'ATOM   1  N1  CORE',
-  '@<TRIPOS>MOLECULE',
-  'for g in range(G):',
-  '0101 1100',
-  'C₆H₆',
-  'φ = (1 + √5) / 2',
+  'D = kT / 6πηRh',
   'exp(−ΔE / kT)',
+  'T = 300 K',
+  'Δt = 2 fs',
+  'GAFF2 · AM1-BCC',
+  'PAMAM G4',
+  'C₆H₆',
+  'H₂N–CH₂–CH₂–NH₂',
+  'NaCl + AgNO₃ → AgCl↓ + NaNO₃',
+  'antechamber → parmchk2 → tleap',
+  'NVT → NPT → production',
+  'HPLC · GC · TOC',
 ];
 
 type Mol = {

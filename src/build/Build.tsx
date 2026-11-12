@@ -149,17 +149,11 @@ export function StatusPill() {
         <i />
       </span>
       <span className="pill-text">
-        {complete ? (
-          <>build complete</>
-        ) : agents > 0 ? (
-          <>
-            <b>{agents}</b> agents
-          </>
-        ) : (
-          <>scroll to keep building</>
-        )}
+        {complete ? 'Assembly complete' : agents > 0 ? 'Assembling' : 'Scroll to continue'}
         <span className="pill-sep">·</span>
-        <b>{done}</b> / {total} elements
+        <b>{done}</b> / {total}
+        <span className="pill-sep">·</span>
+        yield <b>{pct}%</b>
       </span>
       <span className="pill-bar" aria-hidden="true">
         <i style={{ width: `${pct}%` }} />

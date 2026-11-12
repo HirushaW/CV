@@ -20,12 +20,13 @@ export default function Contact() {
     <>
       <BuildGroup as="section" id="contact" className="section contact">
         <div className="wrap">
-          <p className="sec-index" data-b aria-hidden="true">
-            <span className="slashes">{'//'}</span> 06.00 SEC_CONTACT
-            <span className="sec-count">INDEX [06/06]</span>
-          </p>
+          <div className="tile" data-b aria-hidden="true">
+            <span className="tile-n">06</span>
+            <span className="tile-s">Co</span>
+            <span className="tile-name">Contact</span>
+          </div>
           <p className="micro" data-b>
-            Direct channel
+            Get in touch
           </p>
           <h2 data-b>
             Let&rsquo;s build something
@@ -33,8 +34,8 @@ export default function Contact() {
             at the nanoscale.
           </h2>
           <p className="sec-sub" data-b>
-            For research collaboration, questions about UDB, or anything in computational
-            chemistry, email is the best way to reach me.
+            For research collaboration, questions about the Universal Dendrimer Builder, or
+            anything in computational chemistry, email is the best way to reach me.
           </p>
 
           <div className="contact-row">
@@ -71,7 +72,7 @@ export default function Contact() {
           </p>
           {canReplay && (
             <button type="button" onClick={replay}>
-              ↺ Replay build animation
+              ↺ Replay the assembly animation
             </button>
           )}
         </div>

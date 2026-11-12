@@ -6,7 +6,7 @@ export default function About() {
   return (
     <BuildGroup as="section" id="about" className="section">
       <div className="wrap">
-        <SectionHead n={1} code="ABOUT" kicker="Profile" title="Background & Focus" />
+        <SectionHead id="about" kicker="Profile" title="Background & Focus" />
 
         <div className="about-grid">
           <div className="about-text">

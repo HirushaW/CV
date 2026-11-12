@@ -18,13 +18,12 @@ export default function Toolkit() {
   };
 
   return (
-    <BuildGroup as="section" id="toolkit" className="section">
+    <BuildGroup as="section" id="skills" className="section">
       <div className="wrap">
         <SectionHead
-          n={3}
-          code="TOOLKIT"
-          kicker="Capabilities"
-          title="The Skills Matrix"
+          id="skills"
+          kicker="Technical skills"
+          title="Skills & Techniques"
           sub="From force fields to chromatography: computational, laboratory and pharmaceutical practice."
         />
 

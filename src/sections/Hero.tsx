@@ -7,13 +7,18 @@ export default function Hero() {
     <BuildGroup as="section" id="top" className="hero" intro>
       <div className="wrap">
         <p className="hero-kicker" data-b>
-          <span className="slashes">{'//'}</span> {hero.kicker}
+          <span className="hex" aria-hidden="true" />
+          {hero.kicker}
         </p>
 
         <div className="giant-wrap">
           <div className="giant" data-b aria-hidden="true">
-            {hero.giant.map((word) => (
-              <span key={word}>{word}</span>
+            {hero.giant.map((part) => (
+              <span className="giant-part" key={part}>
+                {part.split('').map((letter, i) => (
+                  <span key={i}>{letter}</span>
+                ))}
+              </span>
             ))}
           </div>
         </div>
@@ -57,7 +62,12 @@ export default function Hero() {
           <figure className={`portrait${person.portrait ? ' has-photo' : ''}`} data-b>
             <div className="portrait-frame">
               {person.portrait ? (
-                <img src={person.portrait} alt={`Portrait of ${person.full}`} />
+                <img
+                  src={person.portrait}
+                  alt={`Portrait of ${person.full}`}
+                  width={920}
+                  height={1083}
+                />
               ) : (
                 <Dendrimer
                   generation={4}
@@ -70,7 +80,9 @@ export default function Hero() {
             </div>
             <figcaption>
               <i aria-hidden="true" />
-              {person.portrait ? person.location : 'Fig. 01 · Dendrimer G4, schematic'}
+              {person.portrait
+                ? `${person.full} · ${person.location}`
+                : 'Dendrimer G4, schematic'}
             </figcaption>
           </figure>
 

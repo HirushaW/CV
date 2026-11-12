@@ -1,15 +1,14 @@
 import { BuildGroup } from '../build/Build';
 import SectionHead from '../components/SectionHead';
-import { experience, leadership, membership } from '../content';
+import { experience, leadership, membership, referees } from '../content';
 
 export function Experience() {
   return (
     <BuildGroup as="section" id="experience" className="section">
       <div className="wrap">
         <SectionHead
-          n={4}
-          code="EXPERIENCE"
-          kicker="Industry"
+          id="experience"
+          kicker="Professional and industrial experience"
           title="Pharmaceutical Industry Training"
           sub="Manufacturing, quality control and formulation development, in Sri Lanka and China."
         />
@@ -54,11 +53,9 @@ export function Leadership() {
     <BuildGroup as="section" id="leadership" className="section">
       <div className="wrap">
         <SectionHead
-          n={5}
-          code="LEADERSHIP"
+          id="leadership"
           kicker="Service"
           title="Leadership & Professional Service"
-          sub="Faculty of Science, University of Peradeniya."
         />
 
         <ol className="lead-list">
@@ -71,6 +68,7 @@ export function Leadership() {
                   {l.current && <em>Current</em>}
                 </p>
                 <p className="lead-org">{l.org}</p>
+                <p className="lead-place">{l.place}</p>
               </div>
               <span className="lead-when">{l.when}</span>
             </li>
@@ -81,6 +79,24 @@ export function Leadership() {
           <p className="tag">Professional membership</p>
           <p className="member-title">{membership.title}</p>
           <p className="lead-when">{membership.when}</p>
+        </div>
+
+        <div className="referees">
+          <p className="micro" data-b>
+            Referees
+          </p>
+          <div className="referee-grid">
+            {referees.map((r) => (
+              <div className="card referee" key={r.name} data-b>
+                <p className="referee-name">{r.name}</p>
+                <p className="referee-title">{r.title}</p>
+                <p className="referee-place">{r.place}</p>
+              </div>
+            ))}
+          </div>
+          <p className="supervisor" data-b>
+            Contact details are available on request.
+          </p>
         </div>
       </div>
     </BuildGroup>

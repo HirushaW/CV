@@ -1,27 +1,31 @@
 import { useState } from 'react';
 import { BuildGroup, CountUp } from '../build/Build';
-import Dendrimer from '../components/Dendrimer';
+import Molecule, {
+  ELEMENT_NAMES,
+  elementColor,
+  type StructureInfo,
+} from '../components/Molecule';
 import SectionHead from '../components/SectionHead';
-import { projects, udb } from '../content';
-
-const GENERATIONS = [1, 2, 3, 4, 5];
+import { colorimeter, polybuilder, software, softwareIntro, udb } from '../content';
 
 export default function Research() {
   const [stage, setStage] = useState(0);
-  const [gen, setGen] = useState(4);
+  const [family, setFamily] = useState(udb.viewer.families[0]);
+  const [gen, setGen] = useState(3);
+  const [info, setInfo] = useState<StructureInfo | null>(null);
   const active = udb.stages[stage];
 
   return (
     <BuildGroup as="section" id="research" className="section">
       <div className="wrap">
         <SectionHead
-          n={2}
-          code="RESEARCH"
-          kicker="Research & projects"
-          title="Flagship Research"
+          id="research"
+          kicker="Computational chemistry"
+          title="Research"
           sub="Scientific software built at the Department of Chemistry, University of Peradeniya, for designing nanoscale drug carriers by simulation."
         />
 
+        {/* ------------------------------------------------ Universal Dendrimer Builder */}
         <article className="card flag">
           <p className="tag tag-live" data-b>
             <i aria-hidden="true" />
@@ -33,6 +37,8 @@ export default function Research() {
           </p>
           <p className="supervisor" data-b>
             {udb.supervisor}
+            <br />
+            {udb.release}
           </p>
 
           <ul className="counters">
@@ -77,39 +83,58 @@ export default function Research() {
                 data-b
               >
                 <p className="micro">
-                  Stage 0{stage + 1} <span className="slashes">{'//'}</span> {active.name}
+                  Stage 0{stage + 1} · {active.name}
                 </p>
                 <p key={stage} className="stage-text">
                   {active.text}
                 </p>
               </div>
 
-              <div className="notes">
-                {udb.notes.map((n) => (
-                  <div key={n.head} data-b>
-                    <p className="micro">{n.head}</p>
-                    <p>{n.text}</p>
-                  </div>
+              <p className="micro block-label" data-b>
+                Contributions
+              </p>
+              <ul className="points">
+                {udb.highlights.map((h) => (
+                  <li key={h} data-b>
+                    {h}
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
 
             <div className="viewer" data-b>
+              <p className="micro">Structures built with UDB</p>
+              <div className="viewer-families" role="group" aria-label="Dendrimer family">
+                {udb.viewer.families.map((f) => (
+                  <button
+                    key={f.key}
+                    type="button"
+                    aria-pressed={f.key === family.key}
+                    className={f.key === family.key ? 'on' : ''}
+                    onClick={() => setFamily(f)}
+                  >
+                    {f.label}
+                  </button>
+                ))}
+              </div>
+
               <div className="viewer-stage">
-                <Dendrimer
-                  generation={gen}
+                <Molecule
+                  src={`./structures/${family.key}_g${gen}.json`}
                   className="viewer-canvas"
-                  label={`Rotating schematic of a generation ${gen} dendrimer`}
+                  label={`Rotating 3D structure of a ${family.label} generation ${gen} dendrimer built with UDB`}
+                  onInfo={setInfo}
                 />
                 <span className="corner c1" aria-hidden="true" />
                 <span className="corner c2" aria-hidden="true" />
                 <p className="viewer-read" aria-hidden="true">
-                  G{gen} · {4 * 2 ** (gen - 1)} branch ends
+                  {family.label} · G{gen}
                 </p>
               </div>
+
               <div className="viewer-bar" role="group" aria-label="Dendrimer generation">
                 <span>Generation</span>
-                {GENERATIONS.map((g) => (
+                {udb.viewer.generations.map((g) => (
                   <button
                     key={g}
                     type="button"
@@ -121,10 +146,40 @@ export default function Research() {
                   </button>
                 ))}
               </div>
-              <p className="viewer-note">
-                Schematic illustration of generational growth, not UDB output. Drag to rotate.
-              </p>
+
+              <dl className="facts" aria-live="polite">
+                <div>
+                  <dt>Atoms</dt>
+                  <dd>{info ? info.atoms.toLocaleString('en-US') : '–'}</dd>
+                </div>
+                <div>
+                  <dt>Heavy atoms</dt>
+                  <dd>{info ? info.heavy.toLocaleString('en-US') : '–'}</dd>
+                </div>
+                <div>
+                  <dt>Rg (heavy atoms)</dt>
+                  <dd>{info ? `${info.rg.toFixed(2)} Å` : '–'}</dd>
+                </div>
+              </dl>
+              <ul className="legend" aria-label="Atom colours">
+                {(info?.elements ?? []).map((el) => (
+                  <li key={el}>
+                    <i style={{ background: elementColor(el) }} aria-hidden="true" />
+                    {ELEMENT_NAMES[el] ?? el}
+                  </li>
+                ))}
+              </ul>
+              <p className="viewer-note">{udb.viewer.caption}</p>
             </div>
+          </div>
+
+          <div className="caps">
+            {udb.capabilities.map((c) => (
+              <div key={c.head} data-b>
+                <p className="micro">{c.head}</p>
+                <p>{c.text}</p>
+              </div>
+            ))}
           </div>
 
           <div className="flag-foot">
@@ -137,7 +192,7 @@ export default function Research() {
               </ul>
             </div>
             <div data-b>
-              <p className="micro">Stack</p>
+              <p className="micro">Methods and software</p>
               <ul className="chips chips-red">
                 {udb.stack.map((s) => (
                   <li key={s}>{s}</li>
@@ -154,49 +209,127 @@ export default function Research() {
           </div>
         </article>
 
-        <div className="proj-grid">
-          {projects.map((p) => (
-            <article key={p.title} className={`card proj${p.wide ? ' wide' : ''}`} data-b>
-              <div className="proj-top">
-                <p className="tag">{p.kind}</p>
-                <p className="proj-when">{p.when}</p>
-              </div>
-              <div className="proj-body">
-                <div>
-                  <h3>{p.title}</h3>
-                  {p.text.map((t) => (
-                    <p key={t} className="proj-text">
-                      {t}
-                    </p>
-                  ))}
-                  {p.supervisor && <p className="supervisor">{p.supervisor}</p>}
+        {/* ------------------------------------------------------------- PolyBuilder */}
+        <article className="card proj poly" data-b>
+          <div className="proj-top">
+            <p className="tag">{polybuilder.kind}</p>
+            <p className="proj-when">{polybuilder.when}</p>
+          </div>
+          <div className="proj-body">
+            <div>
+              <h3>{polybuilder.title}</h3>
+              <p className="supervisor">{polybuilder.supervisor}</p>
+              <ul className="points">
+                {polybuilder.points.map((p) => (
+                  <li key={p}>{p}</li>
+                ))}
+              </ul>
+              <ul className="chips">
+                {polybuilder.tags.map((t) => (
+                  <li key={t}>{t}</li>
+                ))}
+              </ul>
+            </div>
+            <ul className="proj-stats">
+              {polybuilder.stats.map((st) => (
+                <li key={st.label}>
+                  <b>{st.value}</b>
+                  <span>{st.label}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </article>
+
+        {/* ------------------------------------------------------ Scientific software */}
+        <header className="sub-head">
+          <p className="micro" data-b>
+            Projects
+          </p>
+          <h3 className="sub-title" data-b>
+            Scientific Software
+          </h3>
+          <p className="supervisor" data-b>
+            {softwareIntro}
+          </p>
+        </header>
+
+        <div className="soft-list">
+          {software.map((s, i) => (
+            <article key={s.title} className={`card soft${i % 2 ? ' flip' : ''}`}>
+              <div className="soft-text">
+                <div className="proj-top" data-b>
+                  <p className="tag">Scientific software</p>
+                  <p className="proj-when">{s.when}</p>
                 </div>
-                {p.stats && (
-                  <ul className="proj-stats">
-                    {p.stats.map((st) => (
-                      <li key={st.label}>
-                        <b>{st.value}</b>
-                        <span>{st.label}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-              <div className="proj-foot">
-                <ul className="chips">
-                  {p.tags.map((t) => (
-                    <li key={t}>{t}</li>
+                <h3 data-b>{s.title}</h3>
+                <p className="soft-summary" data-b>
+                  {s.summary}
+                </p>
+                <ul className="points small">
+                  {s.details.map((d) => (
+                    <li key={d} data-b>
+                      {d}
+                    </li>
                   ))}
                 </ul>
-                {p.link && (
-                  <a className="proj-link" href={p.link.href} target="_blank" rel="noreferrer">
-                    {p.link.label} <span aria-hidden="true">↗</span>
+                <p className="supervisor" data-b>
+                  {s.meta}
+                </p>
+                <div className="proj-foot" data-b>
+                  <ul className="chips">
+                    {s.tags.map((t) => (
+                      <li key={t}>{t}</li>
+                    ))}
+                  </ul>
+                  <a className="proj-link" href={s.link.href} target="_blank" rel="noreferrer">
+                    {s.link.label} <span aria-hidden="true">↗</span>
                   </a>
-                )}
+                </div>
               </div>
+              <figure className="shot" data-b>
+                <a
+                  href={s.image.src}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Open the full-size screenshot: ${s.image.caption}`}
+                >
+                  <img src={s.image.src} alt={s.image.alt} loading="lazy" />
+                </a>
+                <figcaption>{s.image.caption}</figcaption>
+              </figure>
             </article>
           ))}
         </div>
+
+        {/* ---------------------------------------------------------- Instrumentation */}
+        <header className="sub-head">
+          <p className="micro" data-b>
+            Projects
+          </p>
+          <h3 className="sub-title" data-b>
+            Instrumentation
+          </h3>
+        </header>
+
+        <article className="card proj" data-b>
+          <div className="proj-top">
+            <p className="tag">{colorimeter.kind}</p>
+            <p className="proj-when">{colorimeter.when}</p>
+          </div>
+          <h3>{colorimeter.title}</h3>
+          <p className="supervisor">{colorimeter.supervisor}</p>
+          <ul className="points cols">
+            {colorimeter.points.map((p) => (
+              <li key={p}>{p}</li>
+            ))}
+          </ul>
+          <ul className="chips">
+            {colorimeter.tags.map((t) => (
+              <li key={t}>{t}</li>
+            ))}
+          </ul>
+        </article>
       </div>
     </BuildGroup>
   );
