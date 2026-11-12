@@ -1,5 +1,6 @@
 import { BuildGroup } from '../build/Build';
 import SectionHead from '../components/SectionHead';
+import CardBackground from '../components/CardBackground';
 import Photos from '../components/Photos';
 import { experience, leadership, membership, photos, referees } from '../content';
 
@@ -20,7 +21,8 @@ export function Experience() {
               <div className="exp-rail" aria-hidden="true">
                 <i />
               </div>
-              <div className="card exp-card">
+              <div className="card exp-card has-bg">
+                <CardBackground name={e.photos} />
                 <header className="exp-head" data-b>
                   <p className="exp-when">{e.when}</p>
                   <h3>
@@ -40,7 +42,7 @@ export function Experience() {
                     <li key={t}>{t}</li>
                   ))}
                 </ul>
-                <Photos items={photos[e.photos]} />
+                <Photos set={photos[e.photos]} />
               </div>
             </article>
           ))}
@@ -77,7 +79,7 @@ export function Leadership() {
           ))}
         </ol>
 
-        <Photos items={photos.leadership} />
+        <Photos set={photos.leadership} className="pair" />
 
         <div className="card member" data-b>
           <p className="tag">Professional membership</p>

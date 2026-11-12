@@ -14,18 +14,58 @@ npm run dev      # local preview at http://localhost:5173
 npm run build    # production build in dist/
 ```
 
-## Edit the content
+## The database
 
-All text lives in [`src/content.ts`](src/content.ts): name, tagline, research, projects,
-skills, experience, leadership and contact links. Change it there and the layout and
-animation follow.
+Everything the site says and shows is stored in one file,
+[`database/portfolio.json`](database/portfolio.json). The pages read from it, so changing
+the site means changing that file; no page code needs to be touched.
 
-### The portrait photo
+| Table | What it holds |
+|---|---|
+| `person` | Name, role, location, email, links, portrait |
+| `hero` | Headline word, tagline, the "Currently" list |
+| `about` | Profile paragraphs, focus areas, education |
+| `udb` | Universal Dendrimer Builder: description, seven stages, contributions, capabilities, families, links, 3D viewer settings |
+| `polybuilder`, `software`, `colorimeter` | The other projects |
+| `skills` | Six categories, each with its skills |
+| `experience` | Internships: role, organisation, dates, bullet points |
+| `leadership`, `membership`, `referees` | Roles, membership, referees |
+| `quote` | The quotation in the contact section |
+| `photos` | Every photograph and figure, grouped by the part of the site it belongs to |
+| `backgrounds` | The faint image behind each project and internship card |
+| `sections` | The six sections and their tile symbols |
+
+### Add something
+
+- **A leadership role:** add `{ "role": "...", "org": "...", "place": "...", "when": "..." }`
+  to `leadership`.
+- **A skill:** add `{ "title": "...", "items": ["...", "..."] }` to the right category in
+  `skills` (`items` is optional).
+- **A photograph:** put the image in `public/photos/` as `name.jpg`, plus a small copy
+  about 720 px wide as `name-t.jpg`, then add an entry to the right list in `photos`:
+
+  ```json
+  {
+    "src": "./photos/name.jpg",
+    "thumb": "./photos/name-t.jpg",
+    "alt": "What the photo shows, for people who cannot see it",
+    "title": "Short title",
+    "details": "The sentence or two shown when the photo is opened."
+  }
+  ```
+
+### The check
+
+`npm run check` reads the database and stops with a list of problems if an image file is
+missing, a cross-reference does not resolve, a required text is empty or a link is
+malformed. It also runs at the start of every `npm run build`, so a slip in the data cannot
+reach the live site.
+
+### The portrait
 
 `public/portrait.webp` is a greyscale cut-out of the photo with a transparent background, so
 it sits on the red panel in the hero. To replace it, export a new cut-out at about
-920 px wide to the same file name. `person.portrait` in `src/content.ts` points to it; if
-that is left empty, the hero shows a rotating dendrimer instead.
+920 px wide to the same file name.
 
 ### The 3D structures
 
@@ -40,34 +80,24 @@ python3 scripts/mol2json.py dendrimer_pamam_gen2_min_gaff.mol2 public/structures
 The script keeps the heavy atoms and their bonds and reports the heavy-atom radius of
 gyration. For PAMAM G2 it gives 13.922 Å, the same value the UDB Characteriser reports.
 
-### Photographs
+### Where the images come from
 
-Each part of the site can show a strip of photos: UDB, PolyBuilder, the colorimeter, each
-internship, and leadership. Put the image files in `public/photos/` and list them under
-`photos` in `src/content.ts`:
-
-```ts
-kelun: [
-  { src: './photos/kelun-lab.jpg', alt: 'What the photo shows', caption: 'Short caption' },
-],
-```
-
-A part with an empty list shows no gallery.
-
-### Project screenshots
-
-The images in `public/projects/` come from the README files of the SimQ and UDB
-Characterization Tools repositories.
+Photographs were supplied by the site's owner; location data has been removed from them.
+Screenshots and diagrams of the software come from the README files of the SimQ and UDB
+Characterization Tools repositories and from the UDB website.
 
 ## Where things are
 
 | Path | What it does |
 |---|---|
-| `src/content.ts` | Every word on the site |
+| `database/portfolio.json` | Every word and image reference on the site |
+| `src/content.ts` | Gives the database its types |
+| `scripts/check-database.mjs` | Checks the database before each build |
 | `src/sections/` | One file per page section |
 | `src/build/engine.ts` | The self-building animation (cursors, wireframes, reveal) |
 | `src/components/Background.tsx` | Animated backdrop of molecules and chemistry equations |
 | `src/components/Molecule.tsx` | 3D viewer for the UDB structures |
+| `src/components/Lightbox.tsx` | Opens a photo or figure with its details |
 | `scripts/mol2json.py` | Converts a MOL2 structure for the viewer |
 | `src/styles.css` | All styling; colours are variables at the top |
 

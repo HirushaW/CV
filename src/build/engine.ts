@@ -60,11 +60,6 @@ export function markIn(el: HTMLElement, instant = false) {
   emit();
 }
 
-/** Reveal everything inside a container immediately (used by filters). */
-export function revealWithin(container: HTMLElement) {
-  container.querySelectorAll<HTMLElement>('[data-b]').forEach((el) => markIn(el, true));
-}
-
 export function skipAll() {
   if (state.skipped) return;
   state.skipped = true;
@@ -155,20 +150,23 @@ export const fontsReady: Promise<void> = Promise.race([
   sleep(1500),
 ]);
 
-const AGENT_COLORS = ['#7df3ff', '#ffffff', '#ffd166', '#7df3ff', '#ffffff', '#ff9aa2', '#b8ffcf', '#ffffff'];
+// Every agent has its own colour, and draws its wireframes in it.
+const AGENT_COLORS = ['#3fdcff', '#ffd166', '#b388ff', '#5ee08a', '#ff7ad9', '#ff9f43', '#ffffff', '#7aa2ff'];
 
 const CURSOR_SVG =
   '<svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M2 1.2 13.6 7.4 8.3 8.9 6.2 14z" fill="currentColor" stroke="#050505" stroke-width="1" stroke-linejoin="round"/></svg>';
 
 class Agent {
   el: HTMLDivElement;
+  color: string;
   x = 0;
   y = 0;
 
   constructor(overlay: HTMLElement, index: number, x: number, y: number) {
     this.el = document.createElement('div');
     this.el.className = 'b-agent';
-    this.el.style.color = AGENT_COLORS[index % AGENT_COLORS.length];
+    this.color = AGENT_COLORS[index % AGENT_COLORS.length];
+    this.el.style.color = this.color;
     this.el.innerHTML = CURSOR_SVG;
     this.x = x;
     this.y = y;
@@ -242,13 +240,15 @@ export async function runGroup(group: HTMLElement, opts: GroupOptions = {}) {
   const cy = viewTop + viewH / 2;
 
   const agents: Agent[] = [];
+  // Start each group at a different point in the palette, so sections differ.
+  const palette = opts.intro ? 0 : Math.floor(Math.random() * 8);
   for (let i = 0; i < count; i++) {
     if (opts.intro) {
       const a = (i / count) * Math.PI * 2;
       agents.push(new Agent(overlay, i, cx + Math.cos(a) * 44, cy + Math.sin(a) * 44));
     } else {
       const side = i % 2 === 0 ? -20 : g0.width + 20;
-      agents.push(new Agent(overlay, i, side, viewTop + Math.random() * viewH));
+      agents.push(new Agent(overlay, i + palette, side, viewTop + Math.random() * viewH));
     }
   }
   state.agents += count;
@@ -305,6 +305,7 @@ export async function runGroup(group: HTMLElement, opts: GroupOptions = {}) {
       box.className = 'b-box';
       box.style.left = `${x}px`;
       box.style.top = `${y}px`;
+      box.style.setProperty('--c', agent.color);
       box.innerHTML = `<i class="h1"></i><i class="h2"></i><span class="b-dim">${Math.round(w)} × ${Math.round(h)}</span>`;
       overlay.appendChild(box);
       // Read a layout value to commit the 0×0 start before growing.

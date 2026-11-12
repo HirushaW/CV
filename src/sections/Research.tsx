@@ -7,7 +7,16 @@ import Molecule, {
 } from '../components/Molecule';
 import Photos from '../components/Photos';
 import SectionHead from '../components/SectionHead';
-import { colorimeter, photos, polybuilder, software, softwareIntro, udb } from '../content';
+import CardBackground from '../components/CardBackground';
+import { openLightbox } from '../components/Lightbox';
+import {
+  colorimeter,
+  photos,
+  polybuilder,
+  software,
+  softwareIntro,
+  udb,
+} from '../content';
 
 export default function Research() {
   const [stage, setStage] = useState(0);
@@ -27,7 +36,8 @@ export default function Research() {
         />
 
         {/* ------------------------------------------------ Universal Dendrimer Builder */}
-        <article className="card flag">
+        <article className="card flag has-bg">
+          <CardBackground name="udb" />
           <p className="tag tag-live" data-b>
             <i aria-hidden="true" />
             {udb.tag}
@@ -183,7 +193,12 @@ export default function Research() {
             ))}
           </div>
 
-          <Photos items={photos.udb} />
+          <div className="flag-photos">
+            <p className="micro" data-b>
+              Gallery <span className="micro-hint">· select an image for details</span>
+            </p>
+            <Photos set={photos.udb} />
+          </div>
 
           <div className="flag-foot">
             <div data-b>
@@ -213,7 +228,8 @@ export default function Research() {
         </article>
 
         {/* ------------------------------------------------------------- PolyBuilder */}
-        <article className="card proj poly" data-b>
+        <article className="card proj poly has-bg" data-b>
+          <CardBackground name="polybuilder" />
           <div className="proj-top">
             <p className="tag">{polybuilder.kind}</p>
             <p className="proj-when">{polybuilder.when}</p>
@@ -242,7 +258,7 @@ export default function Research() {
               ))}
             </ul>
           </div>
-          <Photos items={photos.polybuilder} />
+          <Photos set={photos.polybuilder} />
         </article>
 
         {/* ------------------------------------------------------ Scientific software */}
@@ -259,51 +275,58 @@ export default function Research() {
         </header>
 
         <div className="soft-list">
-          {software.map((s, i) => (
-            <article key={s.title} className={`card soft${i % 2 ? ' flip' : ''}`}>
-              <div className="soft-text">
-                <div className="proj-top" data-b>
-                  <p className="tag">Scientific software</p>
-                  <p className="proj-when">{s.when}</p>
-                </div>
-                <h3 data-b>{s.title}</h3>
-                <p className="soft-summary" data-b>
-                  {s.summary}
-                </p>
-                <ul className="points small">
-                  {s.details.map((d) => (
-                    <li key={d} data-b>
-                      {d}
-                    </li>
-                  ))}
-                </ul>
-                <p className="supervisor" data-b>
-                  {s.meta}
-                </p>
-                <div className="proj-foot" data-b>
-                  <ul className="chips">
-                    {s.tags.map((t) => (
-                      <li key={t}>{t}</li>
+          {software.map((s, i) => {
+            const set = photos[s.gallery];
+            const lead = set.items[0];
+            return (
+              <article key={s.title} className={`card soft has-bg${i % 2 ? ' flip' : ''}`}>
+                <CardBackground name={s.gallery} />
+                <div className="soft-text">
+                  <div className="proj-top" data-b>
+                    <p className="tag">Scientific software</p>
+                    <p className="proj-when">{s.when}</p>
+                  </div>
+                  <h3 data-b>{s.title}</h3>
+                  <p className="soft-summary" data-b>
+                    {s.summary}
+                  </p>
+                  <ul className="points small">
+                    {s.details.map((d) => (
+                      <li key={d} data-b>
+                        {d}
+                      </li>
                     ))}
                   </ul>
-                  <a className="proj-link" href={s.link.href} target="_blank" rel="noreferrer">
-                    {s.link.label} <span aria-hidden="true">↗</span>
-                  </a>
+                  <p className="supervisor" data-b>
+                    {s.meta}
+                  </p>
+                  <div className="proj-foot" data-b>
+                    <ul className="chips">
+                      {s.tags.map((t) => (
+                        <li key={t}>{t}</li>
+                      ))}
+                    </ul>
+                    <a className="proj-link" href={s.link.href} target="_blank" rel="noreferrer">
+                      {s.link.label} <span aria-hidden="true">↗</span>
+                    </a>
+                  </div>
                 </div>
-              </div>
-              <figure className="shot" data-b>
-                <a
-                  href={s.image.src}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={`Open the full-size screenshot: ${s.image.caption}`}
-                >
-                  <img src={s.image.src} alt={s.image.alt} loading="lazy" />
-                </a>
-                <figcaption>{s.image.caption}</figcaption>
-              </figure>
-            </article>
-          ))}
+                <div className="soft-media">
+                  <figure className="shot" data-b>
+                    <button
+                      type="button"
+                      onClick={() => openLightbox(set, 0)}
+                      aria-label={`${lead.title}: open with details`}
+                    >
+                      <img src={lead.src} alt={lead.alt} loading="lazy" />
+                    </button>
+                    <figcaption>{lead.details}</figcaption>
+                  </figure>
+                  <Photos set={set} from={1} className="mini" />
+                </div>
+              </article>
+            );
+          })}
         </div>
 
         {/* ---------------------------------------------------------- Instrumentation */}
@@ -316,7 +339,8 @@ export default function Research() {
           </h3>
         </header>
 
-        <article className="card proj" data-b>
+        <article className="card proj colorimeter has-bg" data-b>
+          <CardBackground name="colorimeter" />
           <div className="proj-top">
             <p className="tag">{colorimeter.kind}</p>
             <p className="proj-when">{colorimeter.when}</p>
@@ -333,7 +357,7 @@ export default function Research() {
               <li key={t}>{t}</li>
             ))}
           </ul>
-          <Photos items={photos.colorimeter} />
+          <Photos set={photos.colorimeter} className="wide" />
         </article>
       </div>
     </BuildGroup>

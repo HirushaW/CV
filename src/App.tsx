@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { StatusPill } from './build/Build';
 import { scan } from './build/engine';
 import Background from './components/Background';
+import Lightbox from './components/Lightbox';
 import Nav from './components/Nav';
 import About from './sections/About';
 import Contact from './sections/Contact';
@@ -32,6 +33,7 @@ export default function App() {
         <Contact />
       </main>
       <StatusPill />
+      <Lightbox />
     </>
   );
 }

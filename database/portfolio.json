@@ -1,0 +1,928 @@
+{
+  "person": {
+    "first": "Hirusha",
+    "full": "Hirusha Walgampaya",
+    "initials": "HW",
+    "role": "BSc (Hons) Chemistry · Computational Chemistry & Biochemistry",
+    "location": "Kandy, Central Province, Sri Lanka",
+    "email": "hiruwalgampaya@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/hirushaw",
+    "github": "https://github.com/HirushaW",
+    "portrait": "./portrait.webp"
+  },
+  "hero": {
+    "giant": [
+      "PORT",
+      "FOLIO"
+    ],
+    "kicker": "Computational chemistry · Drug design · Nanocarriers",
+    "tagline": "I use computer simulation to help design drug molecules and the nanoscale carriers that deliver them.",
+    "now": [
+      {
+        "tag": "Research",
+        "title": "Universal Dendrimer Builder",
+        "meta": "University of Peradeniya · Feb 2026 – Present"
+      },
+      {
+        "tag": "Leadership",
+        "title": "President, CHEMSOC",
+        "meta": "Ceylon University Chemical Society · Feb 2026 – Present"
+      },
+      {
+        "tag": "Membership",
+        "title": "Student Member, ACS",
+        "meta": "American Chemical Society · Apr 2025 – Present"
+      }
+    ]
+  },
+  "about": {
+    "paragraphs": [
+      "I am a Chemistry Special undergraduate at the University of Peradeniya, with a focus on computational chemistry and drug design.",
+      "My interests lie in biochemistry and medicinal chemistry approached through computational methods - in particular, using computer simulation to help design drug molecules and the nanoscale carriers that deliver them, grounded in laboratory training across advanced organic, inorganic, analytical and physical chemistry."
+    ],
+    "quote": "Using computer simulation to help design drug molecules and the nanoscale carriers that deliver them.",
+    "focus": [
+      "Computational chemistry",
+      "Drug design",
+      "Biochemistry & medicinal chemistry",
+      "Nanoscale drug carriers"
+    ],
+    "education": [
+      {
+        "place": "University of Peradeniya, Sri Lanka",
+        "years": "2021 – 2026",
+        "lines": [
+          "BSc Honours in Chemistry",
+          "Chemistry GPA 3.73 / 4.00 (at the end of the third year)"
+        ]
+      },
+      {
+        "place": "The Open University of Sri Lanka",
+        "years": "Mar – Dec 2021",
+        "lines": [
+          "Certificate in English Communication",
+          "Certificate in Information Technology"
+        ]
+      },
+      {
+        "place": "Kingswood College, Kandy",
+        "years": "2007 – 2020",
+        "lines": [
+          "G.C.E. Advanced Level, 2020",
+          "G.C.E. Ordinary Level, 2017"
+        ]
+      }
+    ]
+  },
+  "udb": {
+    "tag": "Undergraduate research project · Feb 2026 – Present",
+    "title": "Universal Dendrimer Builder (UDB)",
+    "description": "A Python package that generates all-atom dendrimer structures across nine chemical families, built for the study of tumor-targeted drug delivery through the enhanced permeability and retention effect.",
+    "supervisor": "Department of Chemistry, University of Peradeniya · Supervisor: Dr. Udayana Ranatunga",
+    "release": "Version 1.0.1 · MIT License · Python desktop application · Linux",
+    "stack": [
+      "Python",
+      "AMBER",
+      "GAFF2",
+      "CGenFF",
+      "NAMD",
+      "OpenMM"
+    ],
+    "links": [
+      {
+        "label": "GitHub",
+        "href": "https://github.com/HirushaW/universal-dendrimer-builder"
+      },
+      {
+        "label": "Project website",
+        "href": "https://universal-dendrimer-builder-showcas.vercel.app/"
+      }
+    ],
+    "counters": [
+      {
+        "value": 9,
+        "label": "chemical families"
+      },
+      {
+        "value": 7,
+        "label": "placement stages"
+      },
+      {
+        "value": 10,
+        "prefix": "G1–G",
+        "label": "generations"
+      },
+      {
+        "value": 5,
+        "label": "output formats"
+      }
+    ],
+    "families": [
+      "PAMAM",
+      "PPI",
+      "PLL",
+      "Triazine",
+      "Carbosilane",
+      "Phosphorus",
+      "Polyester",
+      "Polyglycerol",
+      "Custom"
+    ],
+    "stages": [
+      {
+        "name": "Cone axis vector",
+        "text": "An outward unit vector is set for each branch arm, giving every attachment point its own direction of growth."
+      },
+      {
+        "name": "Azimuthal partition",
+        "text": "New branches are spaced evenly around that axis with a Fibonacci (golden-ratio) distribution, so they do not bunch together."
+      },
+      {
+        "name": "Half-angle widening",
+        "text": "The branching cone widens slightly at each generation, by up to 15°, as the outer shell becomes crowded."
+      },
+      {
+        "name": "Direction vectors",
+        "text": "Each branch direction is built from an orthonormal basis of the cone axis and two perpendicular vectors: d = cos θ · axis + sin θ · (cos φ · p₁ + sin φ · p₂)."
+      },
+      {
+        "name": "Mol2 placement",
+        "text": "The monomer is placed along its direction from its MOL2 geometry, with a slight radial offset at higher generations."
+      },
+      {
+        "name": "vdW clash filter",
+        "text": "A steric audit checks the new monomer against existing atoms using van der Waals radii, with a KD-tree limiting the search to nearby atoms."
+      },
+      {
+        "name": "SO(3) simulated annealing",
+        "text": "If a clash is found, simulated annealing over 3D rotations searches for a better orientation and escapes local minima."
+      }
+    ],
+    "highlights": [
+      "Designed and built a Python package generating all-atom dendrimer structures across nine chemical families, including PAMAM, PPI, PLL, triazine, carbosilane, phosphorus, polyester and polyglycerol, for the study of tumor-targeted drug delivery through the enhanced permeability and retention effect.",
+      "Developed a seven-stage cone placement algorithm using simulated annealing and center-of-mass relaxation, resolving tilt accumulation, one-sided branch clumping and basis discontinuity at high generations.",
+      "Established a complete parameterization and simulation pipeline with AMBER, GAFF2, CGenFF, NAMD and OpenMM on Linux compute nodes, and diagnosed atom typing, valence and charge assignment errors in generated monomers.",
+      "Released the package publicly with documentation and a project website."
+    ],
+    "capabilities": [
+      {
+        "head": "Force fields",
+        "text": "GAFF2 by default (antechamber → parmchk2 → tleap), CGenFF routing for heteroatom-rich fragments, and Gasteiger charges as a fallback."
+      },
+      {
+        "head": "Simulation setup",
+        "text": "AMBER .prmtop/.inpcrd, CHARMM/PSF export and complete NAMD 3.x pipelines: solvation, ions, minimisation, heating, equilibration and production."
+      },
+      {
+        "head": "Structural characterisation",
+        "text": "Radius of gyration, Rg tensor and shape descriptors, SASA, van der Waals volume, hydrodynamic radius and density."
+      },
+      {
+        "head": "Output formats",
+        "text": "MOL2, PDB, XYZ, GRO and PSF."
+      }
+    ],
+    "viewer": {
+      "families": [
+        {
+          "key": "pamam",
+          "label": "PAMAM"
+        },
+        {
+          "key": "ppi",
+          "label": "PPI"
+        },
+        {
+          "key": "pll",
+          "label": "PLL"
+        },
+        {
+          "key": "triazine",
+          "label": "Triazine"
+        },
+        {
+          "key": "carbosilane",
+          "label": "Carbosilane"
+        },
+        {
+          "key": "phosphorus",
+          "label": "Phosphorus"
+        },
+        {
+          "key": "polyester",
+          "label": "Polyester"
+        },
+        {
+          "key": "polyglycerol",
+          "label": "Polyglycerol"
+        }
+      ],
+      "generations": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "caption": "Energy-minimised structures built with UDB, from the example set in the UDB repository. Heavy atoms are shown; Rg is the radius of gyration of the heavy atoms. Drag to rotate."
+    }
+  },
+  "polybuilder": {
+    "kind": "Research software",
+    "title": "PolyBuilder: Polymer Structure Generation Tool",
+    "when": "2026",
+    "supervisor": "Department of Chemistry, University of Peradeniya · Supervisor: Dr. Udayana Ranatunga",
+    "tags": [
+      "Python",
+      "RIS-Weighted Dihedral Sampling",
+      "KD-Tree Clash Detection"
+    ],
+    "points": [
+      "Extended the UDB framework to linear, branched and sheet polymer topologies at scales up to 10,000 repeat units, using rotational isomeric state weighted dihedral sampling and incremental KD-tree clash detection.",
+      "Reproduced the self-avoiding walk scaling exponent (ν = 0.585) as a validation of the generated conformations."
+    ],
+    "stats": [
+      {
+        "value": "10,000",
+        "label": "repeat units per chain"
+      },
+      {
+        "value": "ν = 0.585",
+        "label": "self-avoiding walk exponent, reproduced"
+      },
+      {
+        "value": "3",
+        "label": "topologies: linear, branched, sheet"
+      }
+    ]
+  },
+  "softwareIntro": "Developed within the Universal Dendrimer Builder framework, University of Peradeniya · Supervisor: Dr. Udayana Ranatunga",
+  "software": [
+    {
+      "title": "Dendrimer Characterization Tool",
+      "when": "2026",
+      "tags": [
+        "Python"
+      ],
+      "summary": "Standalone application computing radius of gyration, hydrodynamic radius, intrinsic viscosity, charge descriptors and related structural descriptors from minimized structures, validated against published theory.",
+      "details": [
+        "Reports 117 structural and physicochemical properties, with quality control and a plain-language interpretation of the results.",
+        "Size and shape: radius of gyration, asphericity, acylindricity, inertia tensor and principal axes.",
+        "Surface and volume: Shrake–Rupley SASA, van der Waals volume, void fraction and density.",
+        "Hydrodynamics: Kirkwood–Riseman hydrodynamic radius, diffusion coefficient, sedimentation and intrinsic viscosity.",
+        "Also covers back-folding of terminal groups, net charge, dipole moment, surface charge density, topology and bond and clash audits.",
+        "Runs as a GUI or from the command line, on one structure or a whole folder, reading MOL2, AMBER and PDB files."
+      ],
+      "meta": "UDB Characteriser · Version 1.0.0 · MIT License · Python 3.10+ · Linux",
+      "gallery": "characteriser",
+      "link": {
+        "label": "GitHub",
+        "href": "https://github.com/HirushaW/UDB-Characterization"
+      }
+    },
+    {
+      "title": "SimQ: Simulation Queue Manager",
+      "when": "2026",
+      "tags": [
+        "Python",
+        "Linux"
+      ],
+      "summary": "Submits, queues and tracks molecular dynamics jobs on Linux compute nodes, allowing simulations to run in sequence without manual intervention.",
+      "details": [
+        "A desktop app with five pages: Queue, Dashboard, Software, History and Settings.",
+        "Checks each job before it starts, then runs jobs one after another, or several at once when CPUs are free, using CPU- and GPU-aware scheduling with EASY backfilling.",
+        "Shows progress and a predicted finish time for every job and for the whole queue.",
+        "Restarts crashed jobs from their last restart files and sends desktop or email notifications.",
+        "Works with any program started from a terminal, and knows NAMD, AMBER and UDB packages in detail.",
+        "Can also be driven from the command line."
+      ],
+      "meta": "Version 0.1.0 · MIT License · Python 3.10+ · Linux",
+      "gallery": "simq",
+      "link": {
+        "label": "GitHub",
+        "href": "https://github.com/HirushaW/Simulation-Queue"
+      }
+    },
+    {
+      "title": "Molecular File Format Converter",
+      "when": "2026",
+      "tags": [
+        "Python"
+      ],
+      "summary": "Converts generated mol2 structures into other molecular file formats for use across the simulation and analysis pipeline.",
+      "details": [
+        "Part of the Universal Dendrimer Parameterization GUI in the UDB Characterization Tools repository.",
+        "Sybyl to GAFF2: types cores and monomers (including Si, P and S), runs parmchk2 and tleap, and writes AMBER .prmtop/.inpcrd, NAMD/CHARMM .psf/.pdb and GROMACS .top/.gro files.",
+        "Validation: atom and bond counts, unassigned types, charge sum, bond lengths and frcmod penalty scores.",
+        "GAFF2 to Sybyl: converts a finished UDB dendrimer back to a Sybyl MOL2 (and PDB) for Avogadro, PyMOL, VMD or CGenFF."
+      ],
+      "meta": "Universal Dendrimer Parameterization · Version 2.0 · MIT License · Linux",
+      "gallery": "converter",
+      "link": {
+        "label": "GitHub",
+        "href": "https://github.com/HirushaW/UDB-Characterization"
+      }
+    }
+  ],
+  "colorimeter": {
+    "kind": "Instrumentation",
+    "title": "Structure Development and Experimental Testing of a Colorimeter",
+    "when": "Nov 2024 – Jan 2025",
+    "supervisor": "Department of Chemistry, University of Peradeniya · Supervisor: Dr. Manjula B. Wijesinghe",
+    "tags": [
+      "Arduino Uno",
+      "Servo Control",
+      "LED Optical Source"
+    ],
+    "points": [
+      "Led a student team in designing and building a low-cost colorimeter as an alternative to commercial instruments, developing the light source, monochromator and sample holder.",
+      "Built the instrument on an Arduino Uno with servo-driven wavelength selection and an LED source array covering the visible range together with UV and IR wavelengths.",
+      "Validated the device against industrial colorimeters, constructing calibration curves from standard solutions and obtaining absorbance values in close agreement with the reference instruments at low error."
+    ]
+  },
+  "skills": [
+    {
+      "category": "Simulation & Modelling",
+      "skills": [
+        {
+          "title": "Molecular dynamics",
+          "items": [
+            "AMBER",
+            "NAMD",
+            "OpenMM"
+          ]
+        },
+        {
+          "title": "Force field parameterization",
+          "items": [
+            "GAFF2",
+            "CGenFF",
+            "antechamber",
+            "sqm"
+          ]
+        },
+        {
+          "title": "Energy minimization"
+        },
+        {
+          "title": "Macromolecule characterization",
+          "items": [
+            "Structural",
+            "Hydrodynamic"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Programming",
+      "skills": [
+        {
+          "title": "Python",
+          "items": [
+            "NumPy",
+            "SciPy",
+            "PyQt5",
+            "KD-tree spatial methods"
+          ]
+        },
+        {
+          "title": "Object-oriented design"
+        },
+        {
+          "title": "R and RStudio"
+        },
+        {
+          "title": "Arduino"
+        },
+        {
+          "title": "Linux and shell",
+          "items": [
+            "Remote work on multi-core compute nodes"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Analysis & Visualization",
+      "skills": [
+        {
+          "title": "Data analysis",
+          "items": [
+            "Origin Pro",
+            "R",
+            "RStudio",
+            "Python"
+          ]
+        },
+        {
+          "title": "Molecular visualization",
+          "items": [
+            "VMD",
+            "NAMD",
+            "Materials Studio",
+            "Chimera"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Laboratory",
+      "skills": [
+        {
+          "title": "Advanced organic synthesis"
+        },
+        {
+          "title": "Inorganic synthesis"
+        },
+        {
+          "title": "Analytical chemistry"
+        },
+        {
+          "title": "Physical chemistry"
+        }
+      ]
+    },
+    {
+      "category": "Instrumentation",
+      "skills": [
+        {
+          "title": "Chromatography",
+          "items": [
+            "HPLC",
+            "Gas chromatography"
+          ]
+        },
+        {
+          "title": "TOC analyzer"
+        },
+        {
+          "title": "Optical instruments",
+          "items": [
+            "Polarimeter",
+            "Colorimeter"
+          ]
+        },
+        {
+          "title": "Bench instruments",
+          "items": [
+            "Semi-micro analytical balance",
+            "pH meter",
+            "Conductivity meter"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Pharmaceutical Practice",
+      "skills": [
+        {
+          "title": "Pharmacopoeial methods",
+          "items": [
+            "USP",
+            "BP"
+          ]
+        },
+        {
+          "title": "Analytical method validation"
+        },
+        {
+          "title": "Stability testing",
+          "items": [
+            "Stability",
+            "Accelerated stability"
+          ]
+        },
+        {
+          "title": "GMP documentation",
+          "items": [
+            "SOP",
+            "MFR",
+            "BMR",
+            "BFR"
+          ]
+        },
+        {
+          "title": "Cleanroom classification"
+        }
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "role": "Winter Intern",
+      "org": "Shandong Drug and Food Vocational College",
+      "photos": "shandong",
+      "place": "Weihai, Shandong Province, China",
+      "when": "Dec 2025 – Jan 2026",
+      "points": [
+        "Trained in pharmaceutical production of both solid and liquid dosage forms, operating manufacturing equipment and monitoring process parameters under conditions simulating industrial practice.",
+        "Carried out production exercises covering small-volume injections, tablet pressing, capsule filling and aluminium-plastic packaging, solid preparations, and the manufacture of Vitamin B2 capsules, granules and powders.",
+        "Performed quality control testing using HPLC, gas chromatography, polarimetry and osmometry, together with microbial limit testing of oral liquids, tablet stability and solubility testing, and stability evaluation of liquid formulations.",
+        "Studied quality assurance and pharmaceutical quality systems through structured lectures, and examined pharmaceutical water systems and HVAC management in a production setting.",
+        "Visited the Pharmaceutical Engineering Department, the Kelun Lifesciences main plant in Chengdu, and a herbal pharmaceutical business, gaining exposure to Traditional Chinese Medicine production alongside modern manufacturing."
+      ],
+      "tags": [
+        "Dosage form production",
+        "HPLC",
+        "Gas chromatography",
+        "Quality systems"
+      ]
+    },
+    {
+      "role": "Internship Trainee",
+      "org": "Kelun Lifesciences (Pvt) Ltd",
+      "photos": "kelun",
+      "place": "Digana, Central Province, Sri Lanka",
+      "when": "Nov 2025 – Dec 2025",
+      "points": [
+        "Trained on the manufacture of sterile injectable products across large-volume lines (saline), small-volume lines (glucose, paracetamol) and EU-standard critical injectables in ampoules and vials (adrenaline, fluphenazine).",
+        "Operated and observed analytical instrumentation for quality control, including HPLC operation and method setup, TOC analysis, gas chromatography, semi-micro analytical balances, and advanced pH and conductivity meters.",
+        "Performed chemical assays including sodium chloride determination by AgNO₃ titration with potassium dichromate indicator, glucose determination by polarimetry, and paracetamol assay procedures.",
+        "Carried out in-process, finished product, stability and accelerated stability testing, and studied storage conditions and shelf-life determination.",
+        "Worked with the Formulation and Development team on new drug formulation to USP and BP standards, analytical and formulation method development and validation, and preparation of master documents (SOP, MFR, BMR, BFR and validation reports).",
+        "Participated in laboratory-scale development of a new drug product, including its assay and stability evaluation."
+      ],
+      "tags": [
+        "Sterile injectables",
+        "USP / BP",
+        "Method validation",
+        "GMP documentation"
+      ]
+    }
+  ],
+  "leadership": [
+    {
+      "role": "President",
+      "org": "Ceylon University Chemical Society (CHEMSOC)",
+      "place": "Faculty of Science, University of Peradeniya",
+      "when": "Feb 2026 – Present",
+      "current": true
+    },
+    {
+      "role": "Junior Treasurer",
+      "org": "Ceylon University Chemical Society (CHEMSOC)",
+      "place": "Faculty of Science, University of Peradeniya",
+      "when": "Apr 2025 – Feb 2026"
+    },
+    {
+      "role": "Batch Representative",
+      "org": "Ceylon University Chemical Society (CHEMSOC)",
+      "place": "Faculty of Science, University of Peradeniya",
+      "when": "Mar 2024 – Mar 2025"
+    },
+    {
+      "role": "Industrial Relations Committee",
+      "org": "Science-Industry Interaction Cell (SIIC)",
+      "place": "Industry Day 2025, Faculty of Science, University of Peradeniya",
+      "when": "Jun 2025 – Aug 2025"
+    },
+    {
+      "role": "Organizing Committee",
+      "org": "Science Undergraduate Research Symposium (SURS 2025)",
+      "place": "Faculty of Science, University of Peradeniya",
+      "when": "Mar 2025 – Apr 2025"
+    },
+    {
+      "role": "Steering Committee",
+      "org": "Artificial Intelligence Forum for Students (AIFS)",
+      "place": "Faculty of Science, University of Peradeniya",
+      "when": "2025"
+    },
+    {
+      "role": "Chairperson",
+      "org": "Batch 22 Orientation Program, CHEMSOC 2024",
+      "place": "Organized and led ten online sessions for incoming chemistry undergraduates · Faculty of Science, University of Peradeniya",
+      "when": "Jul 2024 – Nov 2024"
+    },
+    {
+      "role": "Event Organizer",
+      "org": "QUIMICA 2024",
+      "place": "Department of Chemistry, Faculty of Science, University of Peradeniya",
+      "when": "2023 – 2024"
+    },
+    {
+      "role": "Organizing Committee",
+      "org": "Startup Day, SIRED 2023",
+      "place": "Society of Industrial Relations and Entrepreneurship Development, Faculty of Science, University of Peradeniya",
+      "when": "2023"
+    }
+  ],
+  "membership": {
+    "title": "Student Member, American Chemical Society (ACS)",
+    "when": "Apr 2025 – Present"
+  },
+  "referees": [
+    {
+      "name": "Dr. Udayana Ranatunga",
+      "title": "Senior Lecturer",
+      "place": "Department of Chemistry, University of Peradeniya, Sri Lanka",
+      "email": "udayana.ranatunga@sci.pdn.ac.lk"
+    },
+    {
+      "name": "Dr. Sampath B. Alahakoon",
+      "title": "Senior Lecturer",
+      "place": "Department of Chemistry, University of Peradeniya, Sri Lanka",
+      "email": "sampath.alahakoon@sci.pdn.ac.lk"
+    }
+  ],
+  "quote": {
+    "text": "Everything that living things do can be understood in terms of the jigglings and wigglings of atoms.",
+    "author": "Richard P. Feynman",
+    "source": "The Feynman Lectures on Physics"
+  },
+  "photos": {
+    "about": {
+      "context": "Department of Chemistry · University of Peradeniya",
+      "items": [
+        {
+          "src": "./photos/about-periodic-table.jpg",
+          "thumb": "./photos/about-periodic-table-t.jpg",
+          "alt": "Hirusha Walgampaya standing in front of a large wall display of the periodic table",
+          "title": "At the Department of Chemistry",
+          "details": "In front of the periodic table display of the Department of Chemistry, Faculty of Science, University of Peradeniya."
+        }
+      ]
+    },
+    "udb": {
+      "context": "Universal Dendrimer Builder",
+      "items": [
+        {
+          "src": "./photos/udb-gui.png",
+          "thumb": "./photos/udb-gui-t.jpg",
+          "alt": "The Universal Dendrimer Builder window showing a completed six-generation build and a table of generations",
+          "title": "The UDB interface",
+          "details": "UDB after building a PAMAM dendrimer to generation six: 9,156 atoms, with the monomer count, terminal groups, atoms, molar mass and radius of gyration listed for each generation."
+        },
+        {
+          "src": "./photos/udb-seven-stage.png",
+          "thumb": "./photos/udb-seven-stage-t.jpg",
+          "alt": "Diagram of the seven stages of the cone placement engine, from cone axis vector to SO(3) simulated annealing",
+          "title": "Seven-stage cone placement engine",
+          "details": "The seven stages run for every monomer at every generation: cone axis vector, azimuthal partition, half-angle widening, direction vectors, Mol2 placement, vdW clash filter and SO(3) simulated annealing."
+        },
+        {
+          "src": "./photos/udb-workflow.png",
+          "thumb": "./photos/udb-workflow-t.jpg",
+          "alt": "Diagram of the six-step UDB workflow from fragment MOL2 files to analysis and output",
+          "title": "Complete workflow",
+          "details": "From fragment files to a production molecular dynamics simulation in one graphical interface: fragment MOL2 files, 3D structure builder, GAFF2 parametrization, energy minimisation, MD simulation with NAMD, then analysis and output."
+        },
+        {
+          "src": "./photos/udb-rescon.jpg",
+          "thumb": "./photos/udb-rescon-t.jpg",
+          "alt": "Hirusha Walgampaya standing in front of the RESCON 2026 Annual Research Congress backdrop",
+          "title": "RESCON 2026",
+          "details": "At RESCON 2026, the Annual Research Congress of the Postgraduate Institute of Science, University of Peradeniya."
+        },
+        {
+          "src": "./photos/udb-abstract.jpg",
+          "thumb": "./photos/udb-abstract-t.jpg",
+          "alt": "First page of the extended abstract on the Universal Dendrimer Builder",
+          "title": "Extended abstract",
+          "details": "First page of the extended abstract “Universal Dendrimer Builder: A GUI-Driven Computational Platform for Multi-Type Dendrimer Construction, Parameterization, and Molecular Dynamics”, prepared for the Proceedings of the Postgraduate Institute of Science Research Congress, Sri Lanka, 24–25 September 2026."
+        }
+      ]
+    },
+    "characteriser": {
+      "context": "Dendrimer Characterization Tool",
+      "items": [
+        {
+          "src": "./photos/udb-characteriser.png",
+          "thumb": "./photos/udb-characteriser-t.jpg",
+          "alt": "Screenshot of the UDB Characteriser showing a 3D view and summary values for a PAMAM G2 dendrimer",
+          "title": "UDB Characteriser",
+          "details": "The Characteriser with results for a PAMAM G2 dendrimer: 516 atoms, 16 terminal groups, and its molar mass, radius of gyration, hydrodynamic radius and solvent-accessible surface area."
+        },
+        {
+          "src": "./photos/characteriser-results.png",
+          "thumb": "./photos/characteriser-results-t.jpg",
+          "alt": "Three-panel figure: the minimised PAMAM G2 structure, a histogram of terminal distances and a bar chart of radius of gyration and hydrodynamic radius",
+          "title": "Worked example: PAMAM G2",
+          "details": "Results for a PAMAM G2 dendrimer (516 atoms): the minimised structure with its 16 terminal amines highlighted, where the terminals sit relative to the core, and the radius of gyration (13.9 Å) beside the Kirkwood–Riseman (11.2 Å) and hard-sphere (18.0 Å) hydrodynamic radii."
+        }
+      ]
+    },
+    "simq": {
+      "context": "SimQ: Simulation Queue Manager",
+      "items": [
+        {
+          "src": "./photos/simq-queue.png",
+          "thumb": "./photos/simq-queue-t.jpg",
+          "alt": "Screenshot of the SimQ queue page listing six jobs with their status, progress and expected finish times",
+          "title": "Queue",
+          "details": "The main page: each row is a job, with its check result, status, progress and expected finish time. Captured in demo mode."
+        },
+        {
+          "src": "./photos/simq-dashboard.png",
+          "thumb": "./photos/simq-dashboard-t.jpg",
+          "alt": "Screenshot of the SimQ dashboard with processor, memory and running-job panels",
+          "title": "Dashboard",
+          "details": "A live view of the machine: every CPU thread, memory, and the jobs running now. Captured in demo mode."
+        },
+        {
+          "src": "./photos/simq-add-job.png",
+          "thumb": "./photos/simq-add-job-t.jpg",
+          "alt": "Screenshot of the SimQ dialog for adding a job from a simulation folder",
+          "title": "Adding a job",
+          "details": "Choose a folder and SimQ works out what it is (a UDB package, a NAMD configuration, an AMBER input or a shell script), then fills in the command, CPUs and GPU. Captured in demo mode."
+        },
+        {
+          "src": "./photos/simq-software.png",
+          "thumb": "./photos/simq-software-t.jpg",
+          "alt": "Screenshot of the SimQ software page listing detected simulation programs",
+          "title": "Software detection",
+          "details": "SimQ searches the machine for simulation programs such as NAMD, AMBER, GROMACS and LAMMPS, and shows each one’s version. Captured in demo mode."
+        }
+      ]
+    },
+    "converter": {
+      "context": "Molecular File Format Converter",
+      "items": [
+        {
+          "src": "./photos/mol2-converter.png",
+          "thumb": "./photos/mol2-converter-t.jpg",
+          "alt": "Screenshot of the Extract mol2 tab converting a PAMAM G2 dendrimer from GAFF2 to Sybyl atom types",
+          "title": "Extract mol2",
+          "details": "The Extract mol2 tab converting a finished PAMAM G2 dendrimer (516 atoms) from GAFF2 to Sybyl atom types."
+        },
+        {
+          "src": "./photos/converter-parameterization.png",
+          "thumb": "./photos/converter-parameterization-t.jpg",
+          "alt": "Screenshot of the Parameterization tab with a PAMAM monomer loaded",
+          "title": "Parameterization",
+          "details": "The Parameterization tab with a PAMAM monomer loaded, ready for GAFF2 parameterization."
+        }
+      ]
+    },
+    "polybuilder": {
+      "context": "PolyBuilder",
+      "items": []
+    },
+    "colorimeter": {
+      "context": "Colorimeter · Nov 2024 – Jan 2025",
+      "items": [
+        {
+          "src": "./photos/colorimeter-circuit.jpg",
+          "thumb": "./photos/colorimeter-circuit-t.jpg",
+          "alt": "Circuit diagram with two Arduino Uno boards, a row of LEDs on a breadboard, a servo motor, a keypad, an LCD and a light sensor",
+          "title": "Circuit design",
+          "details": "Circuit design for the colorimeter: an LED source array on a breadboard, a servo motor, a keypad, an LCD and a light sensor, wired to two Arduino Uno boards."
+        }
+      ]
+    },
+    "shandong": {
+      "context": "Winter Intern · Shandong Drug and Food Vocational College · Dec 2025 – Jan 2026",
+      "items": [
+        {
+          "src": "./photos/shandong-1.jpg",
+          "thumb": "./photos/shandong-1-t.jpg",
+          "alt": "A group of trainees in lab coats listening to an instructor beside a laboratory bench",
+          "title": "Laboratory briefing",
+          "details": "An instructor explains a procedure to the group at the bench."
+        },
+        {
+          "src": "./photos/shandong-2.jpg",
+          "thumb": "./photos/shandong-2-t.jpg",
+          "alt": "A trainee in a lab coat working at a laboratory bench with a flask",
+          "title": "Bench work",
+          "details": "Carrying out a laboratory practical."
+        },
+        {
+          "src": "./photos/shandong-3.jpg",
+          "thumb": "./photos/shandong-3-t.jpg",
+          "alt": "An instructor demonstrating an instrument to a group of trainees in lab coats",
+          "title": "Instrument demonstration",
+          "details": "An instructor demonstrates an instrument to the group."
+        },
+        {
+          "src": "./photos/shandong-4.jpg",
+          "thumb": "./photos/shandong-4-t.jpg",
+          "alt": "Trainees in lab coats gathered around testing equipment in a laboratory",
+          "title": "Testing laboratory",
+          "details": "Working with testing equipment in the college laboratory."
+        },
+        {
+          "src": "./photos/shandong-5.jpg",
+          "thumb": "./photos/shandong-5-t.jpg",
+          "alt": "Nine people in lab coats standing together in a teaching laboratory",
+          "title": "Laboratory group",
+          "details": "Group photo in a teaching laboratory during the internship."
+        },
+        {
+          "src": "./photos/shandong-6.jpg",
+          "thumb": "./photos/shandong-6-t.jpg",
+          "alt": "Trainees seated at desks with name cards during a classroom session",
+          "title": "Lecture session",
+          "details": "A classroom session during the programme, 4 January 2026."
+        },
+        {
+          "src": "./photos/shandong-7.jpg",
+          "thumb": "./photos/shandong-7-t.jpg",
+          "alt": "A large group standing at the entrance of a building under a welcome banner",
+          "title": "Visit to Kelun, Chengdu",
+          "details": "Group photo during the visit to the Kelun plant in Chengdu."
+        },
+        {
+          "src": "./photos/shandong-8.jpg",
+          "thumb": "./photos/shandong-8-t.jpg",
+          "alt": "Six people holding two flags in front of a welcome screen",
+          "title": "Exchange programme",
+          "details": "With the flags of the China Exchange Program for Young International (CEP) and Shandong Drug and Food Vocational College."
+        }
+      ]
+    },
+    "kelun": {
+      "context": "Internship Trainee · Kelun Lifesciences (Pvt) Ltd · Nov 2025 – Dec 2025",
+      "items": [
+        {
+          "src": "./photos/kelun-1.jpg",
+          "thumb": "./photos/kelun-1-t.jpg",
+          "alt": "Trainees in lab coats, hair covers and masks standing beside analytical instruments",
+          "title": "Quality control laboratory",
+          "details": "A briefing beside the analytical instruments in the quality control laboratory."
+        },
+        {
+          "src": "./photos/kelun-2.jpg",
+          "thumb": "./photos/kelun-2-t.jpg",
+          "alt": "Trainees in protective clothing watching an analyst work at a bench",
+          "title": "Observing a procedure",
+          "details": "Watching an analyst carry out a laboratory procedure."
+        },
+        {
+          "src": "./photos/kelun-3.jpg",
+          "thumb": "./photos/kelun-3-t.jpg",
+          "alt": "A group in lab coats, hair covers and masks in discussion in a laboratory",
+          "title": "Instrument briefing",
+          "details": "Discussion with laboratory staff beside the analytical instruments."
+        },
+        {
+          "src": "./photos/kelun-4.jpg",
+          "thumb": "./photos/kelun-4-t.jpg",
+          "alt": "Trainees in protective clothing standing in a row while an analyst prepares a sample",
+          "title": "In the laboratory",
+          "details": "Observing sample handling in the laboratory."
+        }
+      ]
+    },
+    "leadership": {
+      "context": "Ceylon University Chemical Society (CHEMSOC)",
+      "items": [
+        {
+          "src": "./photos/chemsoc-1.jpg",
+          "thumb": "./photos/chemsoc-1-t.jpg",
+          "alt": "A large group seated and standing in two rows in a lecture hall",
+          "title": "CHEMSOC group photograph",
+          "details": "Group photograph at a Ceylon University Chemical Society (CHEMSOC) event."
+        },
+        {
+          "src": "./photos/chemsoc-2.jpg",
+          "thumb": "./photos/chemsoc-2-t.jpg",
+          "alt": "Two people holding an envelope between them in a lecture room",
+          "title": "CHEMSOC event",
+          "details": "At a Ceylon University Chemical Society (CHEMSOC) event."
+        }
+      ]
+    }
+  },
+  "backgrounds": {
+    "udb": "./bg/udb.jpg",
+    "polybuilder": "./bg/polybuilder.svg",
+    "characteriser": "./bg/characteriser.jpg",
+    "simq": "./bg/simq.jpg",
+    "converter": "./bg/converter.jpg",
+    "colorimeter": "./bg/colorimeter.jpg",
+    "shandong": "./bg/shandong.jpg",
+    "kelun": "./bg/kelun.jpg"
+  },
+  "sections": [
+    {
+      "id": "about",
+      "label": "About",
+      "symbol": "Ab"
+    },
+    {
+      "id": "research",
+      "label": "Research",
+      "symbol": "Re"
+    },
+    {
+      "id": "skills",
+      "label": "Skills",
+      "symbol": "Sk"
+    },
+    {
+      "id": "experience",
+      "label": "Experience",
+      "symbol": "Ex"
+    },
+    {
+      "id": "leadership",
+      "label": "Leadership",
+      "symbol": "Le"
+    },
+    {
+      "id": "contact",
+      "label": "Contact",
+      "symbol": "Co"
+    }
+  ]
+}

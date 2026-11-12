@@ -1,6 +1,7 @@
 import { BuildGroup } from '../build/Build';
 import SectionHead from '../components/SectionHead';
-import { about } from '../content';
+import Photos from '../components/Photos';
+import { about, photos } from '../content';
 
 export default function About() {
   return (
@@ -16,6 +17,7 @@ export default function About() {
               </p>
             ))}
             <blockquote data-b>&ldquo;{about.quote}&rdquo;</blockquote>
+            <Photos set={photos.about} className="wide" />
           </div>
 
           <div className="about-side">

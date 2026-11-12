@@ -1,22 +1,9 @@
-import { useRef, useState } from 'react';
 import { BuildGroup } from '../build/Build';
-import { revealWithin } from '../build/engine';
 import SectionHead from '../components/SectionHead';
-import { skillGroups, skills, type SkillGroup } from '../content';
+import { skills } from '../content';
 
-type Filter = 'All' | SkillGroup;
-const FILTERS: Filter[] = ['All', ...skillGroups];
-
+/** Skills, one box per category, following the headings used in the CV. */
 export default function Toolkit() {
-  const [filter, setFilter] = useState<Filter>('All');
-  const grid = useRef<HTMLUListElement>(null);
-
-  const choose = (next: Filter) => {
-    // Cards that are about to be hidden must not be left waiting to be "built".
-    if (grid.current) revealWithin(grid.current);
-    setFilter(next);
-  };
-
   return (
     <BuildGroup as="section" id="skills" className="section">
       <div className="wrap">
@@ -27,44 +14,24 @@ export default function Toolkit() {
           sub="From force fields to chromatography: computational, laboratory and pharmaceutical practice."
         />
 
-        <div className="filters" role="group" aria-label="Filter skills by area">
-          {FILTERS.map((f) => (
-            <button
-              key={f}
-              type="button"
-              aria-pressed={f === filter}
-              className={f === filter ? 'on' : ''}
-              onClick={() => choose(f)}
-              data-b
-            >
-              {f}
-              <span className="filter-n">
-                {f === 'All' ? skills.length : skills.filter((s) => s.group === f).length}
-              </span>
-            </button>
+        <div className="skill-grid">
+          {skills.map((group) => (
+            <article className="card skill-box" key={group.category} data-b>
+              <header className="skill-box-head">
+                <h3>{group.category}</h3>
+                <span>{String(group.skills.length).padStart(2, '0')}</span>
+              </header>
+              <ul className="skill-list">
+                {group.skills.map((skill) => (
+                  <li key={skill.title}>
+                    <p className="skill-name">{skill.title}</p>
+                    {skill.items && <p className="skill-items">{skill.items.join(' · ')}</p>}
+                  </li>
+                ))}
+              </ul>
+            </article>
           ))}
         </div>
-
-        <ul className="skill-grid" ref={grid}>
-          {skills.map((s) => (
-            <li
-              key={s.group + s.title}
-              className="card skill"
-              hidden={filter !== 'All' && s.group !== filter}
-              data-b
-            >
-              <p className="tag">{s.group}</p>
-              <h3>{s.title}</h3>
-              {s.items && (
-                <ul className="chips">
-                  {s.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              )}
-            </li>
-          ))}
-        </ul>
       </div>
     </BuildGroup>
   );
