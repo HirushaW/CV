@@ -132,7 +132,7 @@ export default function Dendrimer({ generation, className, label }: Props) {
         if (n.gen <= Math.floor(shown)) extent = Math.max(extent, Math.hypot(n.p[0], n.p[1], n.p[2]));
       }
       fit += (extent - fit) * 0.08;
-      const scale = (Math.min(width, height) * 0.34) / Math.max(fit, 0.6);
+      const scale = (Math.min(width, height) * 0.3) / Math.max(fit, 0.6);
       const focal = RADIUS * 3.4;
 
       const projected = TREE.map((n) => {
