@@ -32,7 +32,7 @@ if (problems.length === 0) {
   for (const key of ['first', 'full', 'initials', 'role', 'location', 'email']) text(db.person[key], `person.${key}`);
   link(db.person.linkedin, 'person.linkedin');
   link(db.person.github, 'person.github');
-  if (db.person.portrait) file(db.person.portrait, 'person.portrait');
+  file(db.person.portrait, 'person.portrait');
 
   // photographs and figures
   for (const [key, set] of Object.entries(db.photos)) {

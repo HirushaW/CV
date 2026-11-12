@@ -3,7 +3,7 @@ import SectionHead from '../components/SectionHead';
 import { skills } from '../content';
 
 /** Skills, one box per category, following the headings used in the CV. */
-export default function Toolkit() {
+export default function Skills() {
   return (
     <BuildGroup as="section" id="skills" className="section">
       <div className="wrap">

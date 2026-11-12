@@ -9,7 +9,7 @@ import Contact from './sections/Contact';
 import { Experience, Leadership } from './sections/Experience';
 import Hero from './sections/Hero';
 import Research from './sections/Research';
-import Toolkit from './sections/Toolkit';
+import Skills from './sections/Skills';
 
 export default function App() {
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function App() {
         <Hero />
         <About />
         <Research />
-        <Toolkit />
+        <Skills />
         <Experience />
         <Leadership />
         <Contact />

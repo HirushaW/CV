@@ -125,10 +125,6 @@ main {
   z-index: 1;
 }
 
-.slashes {
-  color: var(--red);
-}
-
 /* ---------------------------------------------------------------- backdrop */
 .backdrop {
   position: fixed;
@@ -821,7 +817,6 @@ main {
   }
 }
 
-.portrait-canvas,
 .viewer-canvas {
   display: block;
   width: 100%;
@@ -830,7 +825,6 @@ main {
   touch-action: pan-y;
 }
 
-.portrait-canvas:active,
 .viewer-canvas:active {
   cursor: grabbing;
 }
@@ -1570,13 +1564,6 @@ h3 {
   color: var(--faint);
 }
 
-.proj-text {
-  margin-top: 10px;
-  font-size: 15px;
-  line-height: 1.58;
-  color: var(--muted);
-}
-
 .proj .supervisor {
   margin-top: 12px;
 }
@@ -1683,7 +1670,7 @@ h3 {
   color: var(--red);
 }
 
-/* ----------------------------------------------------------------- toolkit */
+/* ------------------------------------------------------------------ skills */
 .skill-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

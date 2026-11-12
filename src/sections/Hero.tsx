@@ -1,5 +1,4 @@
 import { BuildGroup, Typed } from '../build/Build';
-import Dendrimer from '../components/Dendrimer';
 import { hero, person } from '../content';
 
 export default function Hero() {
@@ -49,30 +48,20 @@ export default function Hero() {
             </div>
           </div>
 
-          <figure className={`portrait${person.portrait ? ' has-photo' : ''}`} data-b>
+          <figure className="portrait has-photo" data-b>
             <div className="portrait-frame">
-              {person.portrait ? (
-                <img
-                  src={person.portrait}
-                  alt={`Portrait of ${person.full}`}
-                  width={920}
-                  height={1083}
-                />
-              ) : (
-                <Dendrimer
-                  generation={4}
-                  className="portrait-canvas"
-                  label="Rotating schematic of a fourth-generation dendrimer"
-                />
-              )}
+              <img
+                src={person.portrait}
+                alt={`Portrait of ${person.full}`}
+                width={920}
+                height={1083}
+              />
               <span className="corner c1" aria-hidden="true" />
               <span className="corner c2" aria-hidden="true" />
             </div>
             <figcaption>
               <i aria-hidden="true" />
-              {person.portrait
-                ? `${person.full} · ${person.location}`
-                : 'Dendrimer G4, schematic'}
+              {person.full} · {person.location}
             </figcaption>
           </figure>
 

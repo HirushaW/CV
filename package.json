@@ -1,7 +1,8 @@
 {
-  "name": "hirusha-portfolio",
+  "name": "hirusha-walgampaya-portfolio",
   "private": true,
   "version": "1.0.0",
+  "description": "Portfolio of Hirusha Walgampaya: computational chemistry, drug design and nanoscale drug carriers.",
   "type": "module",
   "scripts": {
     "dev": "vite",
