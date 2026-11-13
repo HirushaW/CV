@@ -201,6 +201,8 @@ main {
   z-index: 30;
   pointer-events: none;
   overflow-x: clip;
+  /* Agents and effects come and go constantly; keep that work inside here. */
+  contain: layout style;
 }
 
 .b-agent {
@@ -215,8 +217,28 @@ main {
   filter: drop-shadow(0 0 5px currentColor);
 }
 
+/* The inner element carries the vertical part of each move with its own
+   easing, so the cursor flies on a curve. */
+.b-agent-y {
+  position: relative;
+  transition: transform 0.25s cubic-bezier(0.55, 0, 0.25, 1);
+  will-change: transform;
+}
+
 .b-agent svg {
   display: block;
+}
+
+.b-tag {
+  position: absolute;
+  left: 13px;
+  top: 13px;
+  padding: 2px 5px;
+  border-radius: 2px 7px 7px 7px;
+  color: #08090b;
+  font: 700 9px/1.15 var(--mono);
+  white-space: nowrap;
+  transition: opacity 0.3s ease;
 }
 
 .b-agent.on {
@@ -227,9 +249,146 @@ main {
   opacity: 0.4;
 }
 
+.b-agent.idle .b-tag {
+  opacity: 0;
+}
+
 .b-agent.idle svg {
   animation: drift 9s ease-in-out infinite;
   animation-delay: var(--d, 0s);
+}
+
+/* An idle agent wakes up to inspect something. */
+.b-agent.idle.busy {
+  opacity: 0.9;
+}
+
+.b-agent.idle.busy .b-tag {
+  opacity: 1;
+}
+
+.b-agent.idle.busy svg {
+  animation: none;
+}
+
+.b-trail,
+.b-ripple,
+.b-spark,
+.b-ping {
+  position: absolute;
+  pointer-events: none;
+}
+
+.b-trail {
+  width: 5px;
+  height: 5px;
+  margin: -2.5px 0 0 -2.5px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: trail 0.56s ease-out forwards;
+}
+
+@keyframes trail {
+  from {
+    opacity: 0.6;
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+}
+
+.b-ripple {
+  width: 28px;
+  height: 28px;
+  margin: -14px 0 0 -14px;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  animation: ripple 0.56s ease-out forwards;
+}
+
+.b-ripple.big {
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  animation-duration: 0.7s;
+}
+
+@keyframes ripple {
+  from {
+    opacity: 0.9;
+    transform: scale(0.15);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.6);
+  }
+}
+
+.b-spark {
+  width: 3px;
+  height: 3px;
+  margin: -1.5px 0 0 -1.5px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: spark 0.6s cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
+}
+
+@keyframes spark {
+  to {
+    opacity: 0;
+    transform: translate(var(--dx), var(--dy)) scale(0.3);
+  }
+}
+
+/* The outline an idle agent draws around something it is inspecting. */
+.b-ping {
+  --c: var(--wire);
+  border: 1px solid var(--c);
+  box-shadow: inset 0 0 20px color-mix(in srgb, var(--c) 10%, transparent);
+  opacity: 0;
+  animation: ping 1.1s ease-out forwards;
+}
+
+@keyframes ping {
+  18% {
+    opacity: 0.75;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* A band of light sweeps across each wireframe as it fills. */
+.b-clip {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.b-scan {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 38%;
+  transform: translateX(-110%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--c) 42%, transparent),
+    transparent
+  );
+}
+
+.b-box.fill .b-scan {
+  animation: scan 0.5s ease-out forwards;
+}
+
+@keyframes scan {
+  to {
+    transform: translateX(290%);
+  }
 }
 
 @keyframes drift {
@@ -992,7 +1151,6 @@ h3 {
   position: relative;
   border: 1px solid var(--line);
   background: var(--panel);
-  backdrop-filter: blur(3px);
 }
 
 .has-bg {
@@ -1005,7 +1163,6 @@ h3 {
   z-index: -1;
   background: right center / cover no-repeat;
   opacity: 0.16;
-  filter: grayscale(1);
   mask-image: linear-gradient(100deg, transparent 18%, #000 70%);
   pointer-events: none;
 }
